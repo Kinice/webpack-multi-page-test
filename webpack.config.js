@@ -35,7 +35,9 @@ module.exports = {
     },
     plugins: [
             new webpack.ProvidePlugin({
-                $: 'jquery'
+                $: 'jquery',
+                'wx': 'weixin-js-sdk',
+                'weui': 'weui.js'
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'vendors',
