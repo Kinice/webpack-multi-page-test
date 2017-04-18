@@ -1,17 +1,19 @@
 const path = require('path')
+const glob = require('glob')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = {
-    entry: {
-        index: './src/js/index.js'
-    },
+let entries = getEntry('src/js/*.js', 'src/js/')
+let chunks = Object.keys(entries)
+ 
+let config = {
+    entry: entries,
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: '/dist/',
         filename: 'js/[name].js',
-        chunkFilename: 'js/[id].chunk.js'
+        chunkFilename: 'js/[id].chunk.js?[chunkhash]'
     },
     module: {
         loaders: [
@@ -30,6 +32,13 @@ module.exports = {
                 },{
                     test: /\.(png|jpg|gif)$/,
                     loader: 'url-loader?limit=8192&name=./img/[hash].[ext]'
+                },{
+                    test: /\.js$/,
+                    exclude: /node_modules/,
+                    loader: 'babel-loader',
+                    query: {
+                        presets: ['es2015']
+                    }
                 }
         ]
     },
@@ -41,22 +50,22 @@ module.exports = {
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'vendors',
-                chunks: ['index'],
+                chunks: chunks,
                 minChunks: 1
             }),
             new ExtractTextPlugin('css/[name].css'),
-            new HtmlWebpackPlugin({
-                favicon: './src/img/favicon.ico',
-                filename: './view/index.html',
-                template: './src/view/index.html',
-                indect: 'body',
-                hash: true,
-                chunks: ['vendors', 'index'],
-                minify: {
-                    removeComments: true,
-                    collapseWhitespace: false
-                }
-            }),
+            // new HtmlWebpackPlugin({
+            //     favicon: './src/img/favicon.ico',
+            //     filename: './view/index.html',
+            //     template: './src/view/index.html',
+            //     indect: 'body',
+            //     hash: true,
+            //     chunks: ['vendors', 'index'],
+            //     minify: {
+            //         removeComments: true,
+            //         collapseWhitespace: false
+            //     }
+            // }),
             new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
@@ -66,4 +75,38 @@ module.exports = {
         inline: true,
         hot: true
     }
+}
+let pages = Object.keys(getEntry('src/view/*.html', 'src/view/'))
+
+pages.forEach((pathname) => {
+    let conf = {
+        filename: 'view/' + pathname + '.html',
+        template: 'src/view/' + pathname + '.html',
+        inject: false
+    }
+    if(pathname in config.entry){
+        conf.favicon = 'src/img/favicon.ico'
+        conf.inject = 'body'
+        conf.chunks = ['vendors', pathname]
+        conf.hash = true
+    }
+    config.plugins.push(new HtmlWebpackPlugin(conf))
+})
+
+module.exports = config
+
+function getEntry(globPath, pathDir) {
+    let files = glob.sync(globPath)
+    let entries = {},entry, dirname, basename, pathname, extname
+
+    for(let i = 0; i < files.length; i++){
+        entry = files[i]
+        dirname = path.dirname(entry)
+        extname = path.extname(entry)
+        basename = path.basename(entry, extname)
+        pathname = path.join(dirname, basename)
+        pathname = pathDir ? pathname.replace(new RegExp('^' + pathDir), '') : pathname
+        entries[pathname] = ['./' + entry]
+    }
+    return entries
 }
