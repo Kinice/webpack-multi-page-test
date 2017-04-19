@@ -69,7 +69,7 @@ let config = {
             new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-        contentBase: './',
+        contentBase: './dist/view/',
         host: 'localhost',
         port: '9090',
         inline: true,

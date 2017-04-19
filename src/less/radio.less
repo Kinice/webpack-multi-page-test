@@ -1,0 +1,68 @@
+.timepick-radio{
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-left: 5%;
+    &>div{
+        margin-bottom: .3rem;
+        .default{
+            display: block;
+            position: relative;
+            border: .01rem solid #d2d2d2;
+            border-radius: 3px;
+            padding: 10px 0;
+            text-align: center;
+            cursor: pointer;
+        }
+        .selected{
+            border: .01rem solid #fe573d;
+            &:after{
+                content: '✓';
+                display: block;
+                position: absolute;
+                font-size: 0.32rem;
+                right: 0.02rem;
+                bottom: 0;
+                line-height: 1;
+                color: #fff;
+            }
+            &:before{
+                content: '';
+                display: block;
+                position: absolute;
+                right: -.22rem;
+                bottom: -.38rem;
+                height: 0;
+                width: 0;
+                border-width:.22rem .30rem .42rem;
+                border-color: transparent transparent transparent #fe573d;
+                border-style: solid;
+                transform: rotate(54deg)
+            }
+        }
+        .disabled{
+            color: #c9c9c9;
+            &:after{
+                content: '满';
+                display: block;
+                position: absolute;
+                font-size: .09rem;
+                top: 0;
+                left: 0;
+                line-height: 1;
+                padding: .05rem;
+                background: #8f8f8f;
+            }
+        }
+    }
+    .line-three{
+        flex: 0 0 30%;
+        margin-right: 3%;
+    }
+    .line-four{
+        flex: 0 0 21%;
+        margin-right: 3%;
+    }
+    input[type="checkbox"],input[type="radio"]{
+        display: none;
+    }
+}

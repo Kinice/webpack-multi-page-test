@@ -1,17 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,maximum-scale=1,minimum-scale=1">
-    <title>Webpack Test</title>
-<link rel="shortcut icon" href="/dist/favicon.ico"><link href="/dist/css/vendors.css?ff860bd6f758c672660f" rel="stylesheet"></head>
-<body>
-    <div class="g-hd"></div>
-    <div class="g-bd">
-        <input type="button" value="弹窗" class="btn">
-        <p class="img">
-            <img src="/dist/./img/526229e624b1dc47ed91ff518c473e38.png" alt="haha">
-        </p>
-    </div>
-    <div class="g-ft"></div>
-<script type="text/javascript" src="/dist/js/vendors.js?ff860bd6f758c672660f"></script><script type="text/javascript" src="/dist/js/index.js?ff860bd6f758c672660f"></script></body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,maximum-scale=1,minimum-scale=1">
+        <title>The ONE在线钢琴陪练</title>
+    <link rel="shortcut icon" href="/dist/favicon.ico"><link href="/dist/css/vendors.css?a7a88336dafde91defbc" rel="stylesheet"></head>
+    <body>
+        <script>
+            document.documentElement.style.fontSize = window.innerWidth / 7.5 + 'px';
+        </script>
+        <div class="g-banner">
+            <img src="/dist/./img/ca9d715575e4d19041803a288da8b1c8.jpg">
+        </div>
+        <div class="g-bd">
+            <section class="m-sec">
+                <div class="m-form">
+                    <div class="input-con">
+                        <input type="text" id="coupon_code" placeholder="请输入邀请码">
+                    </div>
+                    <div class="m-info">
+                        如无邀请码，请在公众号留言索取，或拨打010-59453732
+                    </div>
+                    <div class="input-con">
+                        <input type="text" id="name" placeholder="请输入孩子姓名">
+                    </div>
+                    <div class="input-con">
+                        <input type="text" id="phone" placeholder="请输入您的手机号码">
+                    </div>
+                    <div class="input-con flex">
+                        <div class="vcode">
+                            <input type="text" id="verify_code" placeholder="短信验证码">
+                        </div>
+                        <div class="vcode-btn">
+                            <button class="btn" id="sendVcode">获取验证码</button>
+                        </div>
+                    </div>
+                    <div class="input-con">
+                        <button class="btn big" id="confirm">免费领取体验课</button>
+                        <div class="m-info explain">
+                            6岁以上，具备基本识谱能力和弹奏技巧的用户
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="m-sec">
+                <div class="sec-title">
+                    <h2>课程特色</h2>
+                </div>
+                <div class="character-content flex">
+                    <div class="content-left">
+                        <img src="/dist/./img/5936fb37d203551ebf38e1b285572fbb.jpg">
+                    </div>
+                    <div class="content-right">
+                        <h3>1对1专业名师陪练，更放心</h3>
+                        <p>毕业于全国各大专业院校的陪练老师，针对孩子的学琴程度，提供定制化的曲目指导。</p>
+                    </div>
+                </div>
+                <div class="character-content flex">
+                    <div class="content-left">
+                        <img src="/dist/./img/942951c79952c3b6e74eb904ea792120.jpg">
+                    </div>
+                    <div class="content-right">
+                        <h3>随时随地预约陪练，更方便</h3>
+                        <p>24小时随时预约老师，省时省力，孩子在家就能接受专业的陪练指导。</p>
+                    </div>
+                </div>
+                <div class="character-content flex">
+                    <div class="content-left">
+                        <img src="/dist/./img/56ef0b8b5e911b8eec0a6ccbc2cbf9ef.jpg">
+                    </div>
+                    <div class="content-right">
+                        <h3>可视化指导纠错，更直观</h3>
+                        <p>通过视频屏幕，老师及时纠正孩子的不足，家长看得见，陪练更安心。</p>
+                    </div>
+                </div>
+                <div class="character-content flex">
+                    <div class="content-left">
+                        <img src="/dist/./img/a23b79481fe31a26ce1dc0c2fae24fe2.jpg">
+                    </div>
+                    <div class="content-right">
+                        <h3>培养正确的练琴习惯，更高效</h3>
+                        <p>鼓励性陪练让孩子注意力高度集中，练琴由被动变主动，养成在家练琴的好习惯。</p>
+                    </div>
+                </div>
+                <div class="character-content flex">
+                    <div class="content-left">
+                        <img src="/dist/./img/268039a2829c6aa506bfceeb826b16c3.jpg">
+                    </div>
+                    <div class="content-right">
+                        <h3>陪练助教全程协助，更省心</h3>
+                        <p>陪练总结让家长了解孩子练琴情况，陪练助教全程跟进孩子学习，向家长及时沟通反馈。</p>
+                    </div>
+                </div>
+            </section>
+            <section class="m-sec">
+                <div class="sec-title">
+                    <h2>孩子家长都说好</h2>
+                </div>
+                <div class="good-content">
+                    <div class="good-banner">
+                        <img src="/dist/./img/111f633b160768cde3614860ae8e28a2.jpg">
+                    </div>
+                    <div class="good-talk">
+                        <p>毕烨妈妈：</p>
+                        <p>老师讲解很细致，把弹得不对的每个音符都抠出来了！还讲解了需要处理的节奏、强弱、对比，这是我们自己在家练习根本达不到的专业啊~更关键的是，老师亲自示范，收获良多！</p>
+                        <p>The ONE陪练赞赞赞！</p>
+                    </div>
+                </div>
+                <div class="good-content">
+                    <div class="good-banner">
+                        <img src="/dist/./img/afb92a71dbdacb7e66d612130a77ef1e.jpg">
+                    </div>
+                    <div class="good-talk">
+                        <p>高天留云爸爸：</p>
+                        <p>儿子非常喜欢姜老师，这次陪练接触下来，真的非常专业，非常有耐心，非常好！要给The ONE陪练一万个赞！现在上完陪练，儿子练琴根本停不下来！</p>
+                    </div>
+                </div>
+                <div class="good-content">
+                    <div class="good-banner">
+                        <img src="/dist/./img/c9aabc7294a88a4f84fa052baf501d85.jpg">
+                    </div>
+                    <div class="good-talk">
+                        <p>博涵妈妈：</p>
+                        <p>小博同学对新推出的陪练课进行了尝试，老师讲解的很细致，课后老师会及时对上课中发现的问题归纳总结，写好后发给小博同学，在老师的陪练下小博同学的钢琴学习有了新的进步。爱音乐，爱THE ONE，谢谢老师。</p>
+                    </div>
+                </div>
+                <div class="good-content">
+                    <div class="good-banner">
+                        <img src="/dist/./img/585227410fb90b6b3412979247b04576.jpg">
+                    </div>
+                    <div class="good-talk">
+                        <p>妙可妈妈：</p>
+                        <p>妙可上的陪练课感觉很好，每一位老师课上指导的都非常认真，课后还给予详细的分析和练琴方法，非常感谢各位老师对妙可的帮助，这样专业的团队我们很喜欢也很信任。</p>
+                    </div>
+                </div>
+            </section>
+            <section class="m-sec">
+                <div class="sec-title">
+                    <h2>专家推荐 全球领先的智能音乐教育品牌</h2>
+                </div>
+                <div class="expert-row flex">
+                    <div class="expert-content">
+                        <img src="/dist/./img/d0f0da0397813edc706030316454e3e1.jpg">
+                        <h4>周海宏教授</h4>
+                        <p>中央音乐学院副院长</p>
+                        <p>中国音乐心理学研究第一人</p>
+                    </div>
+                    <div class="expert-content">
+                        <img src="/dist/./img/3f1022d2971bf4dcdf46a86972628ac6.jpg">
+                        <h4>王戈</h4>
+                        <p>斯坦福音乐系教授</p>
+                        <p>“Smule”创始人</p>
+                    </div>
+                    <div class="expert-content">
+                        <img src="/dist/./img/b02d9c31c747b05ac3afb886cf08fc62.jpg">
+                        <h4>赵伟竣教授</h4>
+                        <p>台湾奥尔夫教育协会理事</p>
+                        <p>The ONE课程主编</p>
+                    </div>
+                </div>
+                <div class="expert-row flex">
+                    <div class="expert-content">
+                        <img src="/dist/./img/3fd212aec1c97fa01e98be944a1235b0.jpg">
+                        <h4>Stevie Wonder</h4>
+                        <p>美国国宝级歌手</p>
+                    </div>
+                    <div class="expert-content">
+                        <img src="/dist/./img/5eddffd35354dc6eede130532a20de16.jpg">
+                        <h4>宋柯</h4>
+                        <p>著名音乐人</p>
+                    </div>
+                    <div class="expert-content">
+                        <img src="/dist/./img/75b69a287be6e19c68ca2bdfdcf95724.jpg">
+                        <h4>No Doubt乐队</h4>
+                        <p>美国格莱美奖获得者</p>
+                    </div>
+                </div>
+            </section>
+            <section class="m-sec">
+                <div class="sec-title">
+                    <h2>荣誉奖项</h2>
+                </div>
+                <div class="prize-content">
+                    <p>全球最大消费电子展CES<span class="tip-new">“创新大奖”</span></p>
+                    <p>美国乐器协会NAMM show<span>“最佳教育产品奖”</span></p>
+                    <p>全美亲子协会 NAPPA <span>“年度产品奖”</span></p>
+                    <p>“互联网+”典型 CCTV头条报道</p>
+                    <p>苹果 MFi 认证专业钢琴</p>
+                    <p>郎朗基金会 全球巡演指定智能钢琴</p>
+                </div>
+            </section>
+            <div class="getNow">
+                <p>免费领取体验课</p>
+                <button class="btn" id="goTop">领取体验课</button>
+            </div>
+        </div>
+    <script type="text/javascript" src="/dist/js/vendors.js?a7a88336dafde91defbc"></script><script type="text/javascript" src="/dist/js/index.js?a7a88336dafde91defbc"></script></body>
 </html>
