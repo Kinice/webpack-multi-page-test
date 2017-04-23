@@ -45,7 +45,7 @@ var setTime = function(val){//vcode count
     }else{
         val.removeAttr('disabled');
         val.removeClass('btn-disabled');
-        val.html('发送验证码');
+        val.html('获取验证码');
         clearTimeout(t);
         return false;
     }

@@ -1,3 +1,10 @@
+//common
+.point{
+    color: #fe573d;
+}
+.warn{
+    color: #fd853e;
+}
 //button
 .btn{
     width: 100%;
@@ -10,6 +17,15 @@
 }
 .btn-disabled{
     background-color: #ccc;
+}
+.btn-warn{
+    background-color: #fd853e;
+}
+.btn-yel{
+    background-color: #fed037;
+}
+.btn-con{
+    padding: .3rem .5rem;
 }
 .big{
     margin-top: 0.4rem;
@@ -28,7 +44,7 @@
     }
 }
 .m-info{
-    font-size: .22rem;
+    font-size: .24rem;
     color: #aaa;
 }
 //frames
@@ -40,7 +56,7 @@
     }
 }
 .g-bd{
-    padding: .2rem .3rem;
+    padding: .2rem .3rem 1rem;
 }
 //form
 .m-form{
@@ -59,6 +75,106 @@
             border-radius: .08rem;
             font-size: .28rem;
             -webkit-appearance: none;
+        }
+    }
+}
+//confirm
+.m-confirm{
+    text-align: center;
+    .title{
+        font-size: .36rem;
+        font-weight: 500;
+    }
+    .price{
+        margin-top: .28rem;
+        p{
+            font-size: .6rem;
+        }
+    }
+    .info{
+        margin: .4rem 0 .6rem;
+        p{
+            color: #666;
+        }
+    }
+}
+.m-result{
+    padding: .3rem .5rem;
+    .title{
+        font-size: .4rem;
+    }
+    .info{
+        margin: .4rem 0;
+    }
+}
+//card
+.m-card{
+    background-color: #fff;
+    margin-bottom: .2rem;
+    padding: 0 .44rem;
+    box-shadow: 0 0 .06rem #ddd;
+    .title{
+        font-size: .3rem;
+        font-weight: 500;
+        padding: .3rem 0;
+    }
+    .p-list{
+        padding: .2rem 0;
+        justify-content: space-around;
+        .p-list-sub{
+            padding-left: .48rem;
+            padding-top: .1rem;
+        }
+        .btn{
+            width: 1.6rem;
+            font-size: .36rem;
+        }
+        ul{
+            padding-left: .46rem;
+            li{
+                font-size: .36rem;
+                color: #ffa366;
+                list-style: disc;
+                span{
+                    font-size: .28rem;
+                    color: #000;
+                }
+            }
+        }
+    }
+    .s-list{
+        padding: .3rem 0;
+        border-top: 1px solid #dfdfdf;
+        &>div{
+            color: #666;
+        }
+        
+    }
+    .l-list{
+        display: block;
+        position: relative;
+        padding: .2rem 0;
+        border-top: 0.02rem solid #dfdfdf;
+        &>div{
+            padding: .05rem 0;
+            color: #666;
+        }
+        &:after{
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            height: .26rem;
+            width: .26rem;
+            border-style: solid;
+            border-width: .03rem;
+            border-color: #a0a0a0 #a0a0a0 transparent transparent;
+            transform: rotate(45deg) translateX(-50%);
+        }
+        .class-info{
+            width: 86%;
+            font-size: .26rem;
         }
     }
 }

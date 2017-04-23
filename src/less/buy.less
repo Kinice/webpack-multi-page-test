@@ -1,0 +1,73 @@
+.colorMixin(@color){
+    .half{
+        border-color: @color @color #ddd #ddd;
+    }
+    .quarter{
+        border-color: @color #ddd #ddd #ddd;
+    }
+    .three-fourths{
+        border-color: @color @color @color #ddd;
+    }
+}
+.m-buysec{
+    padding-top: .3rem;
+    .title{
+        margin-bottom:.08rem;
+    }
+    .m-buylist{
+        align-items: center;
+        border-radius: .05rem;
+        padding: .1rem .3rem;
+        margin-bottom: .1rem;
+        .times{
+            height: 1.2rem;
+            width: 1.2rem;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 1.18rem;
+            font-size: .32rem;
+            transform: rotate(45deg);
+            p{
+                transform: rotate(-45deg)
+            }
+        }
+        .price{
+            vertical-align: middle;
+            line-height: .36rem;
+            .point{
+                font-size: .36rem;
+            }
+        }
+        .small{
+            height: .7rem;
+            width: 1.5rem;
+        }
+    }
+    .primary{
+        border-left: .08rem solid #8b46fe;
+        box-shadow: 0 0 .04rem #8b46fe;
+        .times{
+            border: .04rem solid #8b46fe;
+            color: #8b46fe;
+        }
+        .colorMixin(#8b46fe);
+    }
+    .mediate{
+        border-left: .08rem solid #d65bff;
+        box-shadow: 0 0 .04rem #d65bff;
+        .times{
+            border: .04rem solid #d65bff;
+            color: #d65bff;
+        }
+        .colorMixin(#d65bff);
+    }
+    .advance{
+        border-left: .08rem solid #fd86bd;
+        box-shadow: 0 0 .04rem #fd86bd;
+        .times{
+            border: .04rem solid #fd86bd;
+            color: #fd86bd;
+        }
+        .colorMixin(#fd86bd);
+    }
+}

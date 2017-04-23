@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,maximum-scale=1,minimum-scale=1">
+        <title>The ONE在线钢琴陪练</title>
+    </head>
+    <body>
+        <script>
+            document.documentElement.style.fontSize = window.innerWidth / 7.5 + 'px';
+        </script>
+        <div class="g-banner">
+            <img src="../img/banner.jpg">
+        </div>
+        <div class="g-bd">
+            <section class="m-sec">
+                <div class="m-form">
+                    <div class="input-con">
+                        <input type="text" id="name" placeholder="请输入孩子姓名">
+                    </div>
+                    <div class="input-con">
+                        <input type="text" id="phone" placeholder="请输入您的手机号码">
+                    </div>
+                    <div class="input-con flex">
+                        <div class="vcode">
+                            <input type="text" id="verify_code" placeholder="短信验证码">
+                        </div>
+                        <div class="vcode-btn">
+                            <button class="btn" id="sendVcode">获取验证码</button>
+                        </div>
+                    </div>
+                    <div class="input-con">
+                        <button class="btn big" id="confirm">确认</button>
+                        <div class="m-info explain">
+                            6岁以上，具备基本识谱能力和弹奏技巧的用户
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>
