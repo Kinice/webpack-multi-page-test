@@ -86,7 +86,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9e961718662b1ff50d49"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3364526e9a9ff295f389"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotMainModule = true; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -668,7 +668,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		11: 0
+/******/ 		12: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -726,7 +726,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/" + chunkId + ".chunk.js?" + {"0":"4f4c7d31e6bdb8fb6ce6","1":"68a5d607e265ec0b0b73","2":"c32ada75cf6b53cbd3d9","3":"38d33007b84b8dce263f","4":"049acb10d8e859c4671a","5":"611fa1e1b6cc8914bf75","6":"14803d43f0674f535f19","7":"894cac65572b5fb7fdd6","8":"baa4432552225133e75e","9":"7b571793da96752a6fbf","10":"1d595a90bc435680cdfd"}[chunkId] + "";
+/******/ 		script.src = __webpack_require__.p + "js/" + chunkId + ".chunk.js?" + {"0":"4f4c7d31e6bdb8fb6ce6","1":"68a5d607e265ec0b0b73","2":"c32ada75cf6b53cbd3d9","3":"38d33007b84b8dce263f","4":"049acb10d8e859c4671a","5":"611fa1e1b6cc8914bf75","6":"14803d43f0674f535f19","7":"894cac65572b5fb7fdd6","8":"baa4432552225133e75e","9":"7b571793da96752a6fbf","10":"1d595a90bc435680cdfd","11":"ff2d4fe2e57b2c27a81f"}[chunkId] + "";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -11073,25 +11073,25 @@ return jQuery;
 
 __webpack_require__(2);
 __webpack_require__(1);
+__webpack_require__(23);
 __webpack_require__(19);
-__webpack_require__(17);
 __webpack_require__(0);
 
 //Common state define
 var form = {
-    name: '',
-    phone: '',
-    verify_code: ''
+    'name': '',
+    'mobile': '',
+    'code': ''
 };
 var state = {
     name: 0,
-    phone: 0,
-    verify_code: 0
+    mobile: 0,
+    code: 0
 };
 var reg = {
     name: /^[a-zA-Z\u4e00-\u9fa5]{1,20}$/,
-    phone: /^1\d{10}$/,
-    verify_code: /^\d{6}$/
+    mobile: /^1\d{10}$/,
+    code: /^\d{6}$/
 };
 var isSentVcode = false,
     isCheckVcode = false,
@@ -11099,8 +11099,10 @@ var isSentVcode = false,
 var isCounting = false,
     countDown = 60,
     t;
-var signupApi = '../../api/1.0/signup',
-    vcodeApi = '../../api/1.0/send_vcode',
+var signupApi = '/weixin/auth/signup',
+
+// vcodeApi = '../../api/1.0/send_vcode',
+vcodeApi = '/weixin/auth/send_validate_code',
     checkVcodeApi = '../../api/1.0/check_vcode';
 
 var url = './result.html';
@@ -11129,16 +11131,14 @@ var setTime = function setTime(val) {
 };
 //send vcode event
 $('#sendVcode').on('click', function (e) {
-    var phone = $('#phone').val();
-    if (reg['phone'].test(phone)) {
-        var data = JSON.stringify({
-            'phone': phone
-        });
+    var mobile = $('#mobile').val();
+    if (reg['mobile'].test(mobile)) {
+        var data = {
+            'mobile': mobile
+        };
         $.ajax(vcodeApi, {
             'data': data,
             'type': 'POST',
-            'processData': false,
-            'contentType': 'application/json',
             'success': function success(d) {
                 if (d.request_result.code == 0) {
                     weui.toast('发送成功', 2000);
@@ -11177,36 +11177,24 @@ $('#confirm').on('click', function (e) {
         } else state[i] = 0;
     }
 
-    if (allStates == Object.keys(form).length && !isChangePhone) {
-        $.ajax(checkVcodeApi, {
-            'data': JSON.stringify({
-                'phone': form.phone,
-                'verify_code': form.verify_code
-            }),
+    if (!isChangePhone) {
+        console.log(form);
+        $.ajax(signupApi, {
+            'data': {
+                name: $('#name').val(),
+                mobile: $('#mobile').val(),
+                code: $('#code').val()
+            },
             'type': 'POST',
-            'processData': false,
-            'contentType': 'application/json',
             'success': function success(d) {
-                if (d.request_result.code == 0) {
-                    $.ajax(signupApi, {
-                        'data': JSON.stringify(form),
-                        'type': 'POST',
-                        'processData': false,
-                        'contentType': 'application/json',
-                        'success': function success(da) {
-                            if (da.request_result.code == 0) {
-                                window.location.href = url;
-                            } else {
-                                weui.alert(da.request_result.display_message);
-                            }
-                        },
-                        'error': function error() {
-                            weui.alert('验证失败！请检查网络环境是否良好');
-                        }
-                    });
+                if (d.code == 0) {
+                    window.location.href = url;
                 } else {
-                    weui.alert(d.request_result.display_message);
+                    weui.alert(d.data);
                 }
+            },
+            'error': function error() {
+                weui.alert('验证失败！请检查网络环境是否良好');
             }
         });
     } else {
@@ -11216,13 +11204,11 @@ $('#confirm').on('click', function (e) {
             for (var i in state) {
                 if (state[i] == 0) {
                     switch (i) {
-                        case 'coupon_code':
-                            weui.alert('邀请码不正确');break;
                         case 'name':
                             weui.alert('请输入正确的姓名');break;
-                        case 'phone':
+                        case 'mobile':
                             weui.alert('请输入正确的手机号');break;
-                        case 'verify_code':
+                        case 'code':
                             weui.alert('请输入正确的验证码');break;
                         default:
                             weui.alert('错误！请重新打开页面');break;
@@ -11232,7 +11218,7 @@ $('#confirm').on('click', function (e) {
         }
     }
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(22)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(26)))
 
 /***/ }),
 /* 5 */
@@ -11241,7 +11227,7 @@ $('#confirm').on('click', function (e) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {
 
-__webpack_require__(20);
+__webpack_require__(24);
 
 var checked = {};
 
@@ -11279,13 +11265,474 @@ module.exports = checked;
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/* WEBPACK VAR INJECTION */(function(wx) {!function (a, b) {
+    module.exports = b(a)
+}(window, function (a, b) {
+    function c(b, c, d) {
+        a.WeixinJSBridge ? WeixinJSBridge.invoke(b, e(c), function (a) {
+            h(b, a, d)
+        }) : k(b, d)
+    }
 
+    function d(b, c, d) {
+        a.WeixinJSBridge ? WeixinJSBridge.on(b, function (a) {
+            d && d.trigger && d.trigger(a), h(b, a, c)
+        }) : d ? k(b, d) : k(b, c)
+    }
 
-__webpack_require__(2);
-__webpack_require__(1);
-__webpack_require__(6);
-__webpack_require__(0);
+    function e(a) {
+        return a = a || {}, a.appId = D.appId, a.verifyAppId = D.appId, a.verifySignType = "sha1", a.verifyTimestamp = D.timestamp + "", a.verifyNonceStr = D.nonceStr, a.verifySignature = D.signature, a
+    }
+
+    function f(a) {
+        return {
+            timeStamp: a.timestamp + "",
+            nonceStr: a.nonceStr,
+            "package": a["package"],
+            paySign: a.paySign,
+            signType: a.signType || "SHA1"
+        }
+    }
+
+    function g(a) {
+        return a.postalCode = a.addressPostalCode, delete a.addressPostalCode, a.provinceName = a.proviceFirstStageName, delete a.proviceFirstStageName, a.cityName = a.addressCitySecondStageName, delete a.addressCitySecondStageName, a.countryName = a.addressCountiesThirdStageName, delete a.addressCountiesThirdStageName, a.detailInfo = a.addressDetailInfo, delete a.addressDetailInfo, a
+    }
+
+    function h(a, b, c) {
+        "openEnterpriseChat" == a && (b.errCode = b.err_code), delete b.err_code, delete b.err_desc, delete b.err_detail;
+        var d = b.errMsg;
+        d || (d = b.err_msg, delete b.err_msg, d = i(a, d), b.errMsg = d), c = c || {}, c._complete && (c._complete(b), delete c._complete), d = b.errMsg || "", D.debug && !c.isInnerInvoke && alert(JSON.stringify(b));
+        var e = d.indexOf(":"), f = d.substring(e + 1);
+        switch (f) {
+            case"ok":
+                c.success && c.success(b);
+                break;
+            case"cancel":
+                c.cancel && c.cancel(b);
+                break;
+            default:
+                c.fail && c.fail(b)
+        }
+        c.complete && c.complete(b)
+    }
+
+    function i(a, b) {
+        var c = a, d = q[c];
+        d && (c = d);
+        var e = "ok";
+        if (b) {
+            var f = b.indexOf(":");
+            e = b.substring(f + 1), "confirm" == e && (e = "ok"), "failed" == e && (e = "fail"), -1 != e.indexOf("failed_") && (e = e.substring(7)), -1 != e.indexOf("fail_") && (e = e.substring(5)), e = e.replace(/_/g, " "), e = e.toLowerCase(), ("access denied" == e || "no permission to execute" == e) && (e = "permission denied"), "config" == c && "function not exist" == e && (e = "ok"), "" == e && (e = "fail")
+        }
+        return b = c + ":" + e
+    }
+
+    function j(a) {
+        if (a) {
+            for (var b = 0, c = a.length; c > b; ++b) {
+                var d = a[b], e = p[d];
+                e && (a[b] = e)
+            }
+            return a
+        }
+    }
+
+    function k(a, b) {
+        if (!(!D.debug || b && b.isInnerInvoke)) {
+            var c = q[a];
+            c && (a = c), b && b._complete && delete b._complete, console.log('"' + a + '",', b || "")
+        }
+    }
+
+    function l(a) {
+        if (!(v || w || D.debug || "6.0.2" > A || C.systemType < 0)) {
+            var b = new Image;
+            C.appId = D.appId, C.initTime = B.initEndTime - B.initStartTime, C.preVerifyTime = B.preVerifyEndTime - B.preVerifyStartTime, I.getNetworkType({
+                isInnerInvoke: !0,
+                success: function (a) {
+                    C.networkType = a.networkType;
+                    var c = "https://open.weixin.qq.com/sdk/report?v=" + C.version + "&o=" + C.isPreVerifyOk + "&s=" + C.systemType + "&c=" + C.clientVersion + "&a=" + C.appId + "&n=" + C.networkType + "&i=" + C.initTime + "&p=" + C.preVerifyTime + "&u=" + C.url;
+                    b.src = c
+                }
+            })
+        }
+    }
+
+    function m() {
+        return (new Date).getTime()
+    }
+
+    function n(b) {
+        x && (a.WeixinJSBridge ? b() : r.addEventListener && r.addEventListener("WeixinJSBridgeReady", b, !1))
+    }
+
+    function o() {
+        I.invoke || (I.invoke = function (b, c, d) {
+            a.WeixinJSBridge && WeixinJSBridge.invoke(b, e(c), d)
+        }, I.on = function (b, c) {
+            a.WeixinJSBridge && WeixinJSBridge.on(b, c)
+        })
+    }
+
+    if (!a.jWeixin) {
+        var p = {
+            config: "preVerifyJSAPI",
+            onMenuShareTimeline: "menu:share:timeline",
+            onMenuShareAppMessage: "menu:share:appmessage",
+            onMenuShareQQ: "menu:share:qq",
+            onMenuShareWeibo: "menu:share:weiboApp",
+            onMenuShareQZone: "menu:share:QZone",
+            previewImage: "imagePreview",
+            getLocation: "geoLocation",
+            openProductSpecificView: "openProductViewWithPid",
+            addCard: "batchAddCard",
+            openCard: "batchViewCard",
+            chooseWXPay: "getBrandWCPayRequest",
+            openEnterpriseRedPacket: "getRecevieBizHongBaoRequest",
+            startSearchBeacons: "startMonitoringBeacons",
+            stopSearchBeacons: "stopMonitoringBeacons",
+            onSearchBeacons: "onBeaconsInRange",
+            consumeAndShareCard: "consumedShareCard",
+            openAddress: "editAddress"
+        }, q = function () {
+            var a = {};
+            for (var b in p)a[p[b]] = b;
+            return a
+        }(), r = a.document, s = r.title, t = navigator.userAgent.toLowerCase(), u = navigator.platform.toLowerCase(), v = !(!u.match("mac") && !u.match("win")), w = -1 != t.indexOf("wxdebugger"), x = -1 != t.indexOf("micromessenger"), y = -1 != t.indexOf("android"), z = -1 != t.indexOf("iphone") || -1 != t.indexOf("ipad"), A = function () {
+            var a = t.match(/micromessenger\/(\d+\.\d+\.\d+)/) || t.match(/micromessenger\/(\d+\.\d+)/);
+            return a ? a[1] : ""
+        }(), B = {initStartTime: m(), initEndTime: 0, preVerifyStartTime: 0, preVerifyEndTime: 0}, C = {
+            version: 1,
+            appId: "",
+            initTime: 0,
+            preVerifyTime: 0,
+            networkType: "",
+            isPreVerifyOk: 1,
+            systemType: z ? 1 : y ? 2 : -1,
+            clientVersion: A,
+            url: encodeURIComponent(location.href)
+        }, D = {}, E = {_completes: []}, F = {state: 0, data: {}};
+        n(function () {
+            B.initEndTime = m()
+        });
+        var G = !1, H = [], I = {
+            config: function (a) {
+                D = a, k("config", a);
+                var b = D.check === !1 ? !1 : !0;
+                n(function () {
+                    if (b)c(p.config, {verifyJsApiList: j(D.jsApiList)}, function () {
+                        E._complete = function (a) {
+                            B.preVerifyEndTime = m(), F.state = 1, F.data = a
+                        }, E.success = function (a) {
+                            C.isPreVerifyOk = 0
+                        }, E.fail = function (a) {
+                            E._fail ? E._fail(a) : F.state = -1
+                        };
+                        var a = E._completes;
+                        return a.push(function () {
+                            l()
+                        }), E.complete = function (b) {
+                            for (var c = 0, d = a.length; d > c; ++c)a[c]();
+                            E._completes = []
+                        }, E
+                    }()), B.preVerifyStartTime = m(); else {
+                        F.state = 1;
+                        for (var a = E._completes, d = 0, e = a.length; e > d; ++d)a[d]();
+                        E._completes = []
+                    }
+                }), D.beta && o()
+            }, ready: function (a) {
+                0 != F.state ? a() : (E._completes.push(a), !x && D.debug && a())
+            }, error: function (a) {
+                "6.0.2" > A || (-1 == F.state ? a(F.data) : E._fail = a)
+            }, checkJsApi: function (a) {
+                var b = function (a) {
+                    var b = a.checkResult;
+                    for (var c in b) {
+                        var d = q[c];
+                        d && (b[d] = b[c], delete b[c])
+                    }
+                    return a
+                };
+                c("checkJsApi", {jsApiList: j(a.jsApiList)}, function () {
+                    return a._complete = function (a) {
+                        if (y) {
+                            var c = a.checkResult;
+                            c && (a.checkResult = JSON.parse(c))
+                        }
+                        a = b(a)
+                    }, a
+                }())
+            }, onMenuShareTimeline: function (a) {
+                d(p.onMenuShareTimeline, {
+                    complete: function () {
+                        c("shareTimeline", {
+                            title: a.title || s,
+                            desc: a.title || s,
+                            img_url: a.imgUrl || "",
+                            link: a.link || location.href,
+                            type: a.type || "link",
+                            data_url: a.dataUrl || ""
+                        }, a)
+                    }
+                }, a)
+            }, onMenuShareAppMessage: function (a) {
+                d(p.onMenuShareAppMessage, {
+                    complete: function () {
+                        c("sendAppMessage", {
+                            title: a.title || s,
+                            desc: a.desc || "",
+                            link: a.link || location.href,
+                            img_url: a.imgUrl || "",
+                            type: a.type || "link",
+                            data_url: a.dataUrl || ""
+                        }, a)
+                    }
+                }, a)
+            }, onMenuShareQQ: function (a) {
+                d(p.onMenuShareQQ, {
+                    complete: function () {
+                        c("shareQQ", {
+                            title: a.title || s,
+                            desc: a.desc || "",
+                            img_url: a.imgUrl || "",
+                            link: a.link || location.href
+                        }, a)
+                    }
+                }, a)
+            }, onMenuShareWeibo: function (a) {
+                d(p.onMenuShareWeibo, {
+                    complete: function () {
+                        c("shareWeiboApp", {
+                            title: a.title || s,
+                            desc: a.desc || "",
+                            img_url: a.imgUrl || "",
+                            link: a.link || location.href
+                        }, a)
+                    }
+                }, a)
+            }, onMenuShareQZone: function (a) {
+                d(p.onMenuShareQZone, {
+                    complete: function () {
+                        c("shareQZone", {
+                            title: a.title || s,
+                            desc: a.desc || "",
+                            img_url: a.imgUrl || "",
+                            link: a.link || location.href
+                        }, a)
+                    }
+                }, a)
+            }, startRecord: function (a) {
+                c("startRecord", {}, a)
+            }, stopRecord: function (a) {
+                c("stopRecord", {}, a)
+            }, onVoiceRecordEnd: function (a) {
+                d("onVoiceRecordEnd", a)
+            }, playVoice: function (a) {
+                c("playVoice", {localId: a.localId}, a)
+            }, pauseVoice: function (a) {
+                c("pauseVoice", {localId: a.localId}, a)
+            }, stopVoice: function (a) {
+                c("stopVoice", {localId: a.localId}, a)
+            }, onVoicePlayEnd: function (a) {
+                d("onVoicePlayEnd", a)
+            }, uploadVoice: function (a) {
+                c("uploadVoice", {localId: a.localId, isShowProgressTips: 0 == a.isShowProgressTips ? 0 : 1}, a)
+            }, downloadVoice: function (a) {
+                c("downloadVoice", {serverId: a.serverId, isShowProgressTips: 0 == a.isShowProgressTips ? 0 : 1}, a)
+            }, translateVoice: function (a) {
+                c("translateVoice", {localId: a.localId, isShowProgressTips: 0 == a.isShowProgressTips ? 0 : 1}, a)
+            }, chooseImage: function (a) {
+                c("chooseImage", {
+                    scene: "1|2",
+                    count: a.count || 9,
+                    sizeType: a.sizeType || ["original", "compressed"],
+                    sourceType: a.sourceType || ["album", "camera"]
+                }, function () {
+                    return a._complete = function (a) {
+                        if (y) {
+                            var b = a.localIds;
+                            b && (a.localIds = JSON.parse(b))
+                        }
+                    }, a
+                }())
+            }, getLocation: function (a) {
+            }, previewImage: function (a) {
+                c(p.previewImage, {current: a.current, urls: a.urls}, a)
+            }, uploadImage: function (a) {
+                c("uploadImage", {localId: a.localId, isShowProgressTips: 0 == a.isShowProgressTips ? 0 : 1}, a)
+            }, downloadImage: function (a) {
+                c("downloadImage", {serverId: a.serverId, isShowProgressTips: 0 == a.isShowProgressTips ? 0 : 1}, a)
+            }, getLocalImgData: function (a) {
+                G === !1 ? (G = !0, c("getLocalImgData", {localId: a.localId}, function () {
+                    return a._complete = function (a) {
+                        if (G = !1, H.length > 0) {
+                            var b = H.shift();
+                            wx.getLocalImgData(b)
+                        }
+                    }, a
+                }())) : H.push(a)
+            }, getNetworkType: function (a) {
+                var b = function (a) {
+                    var b = a.errMsg;
+                    a.errMsg = "getNetworkType:ok";
+                    var c = a.subtype;
+                    if (delete a.subtype, c)a.networkType = c; else {
+                        var d = b.indexOf(":"), e = b.substring(d + 1);
+                        switch (e) {
+                            case"wifi":
+                            case"edge":
+                            case"wwan":
+                                a.networkType = e;
+                                break;
+                            default:
+                                a.errMsg = "getNetworkType:fail"
+                        }
+                    }
+                    return a
+                };
+                c("getNetworkType", {}, function () {
+                    return a._complete = function (a) {
+                        a = b(a)
+                    }, a
+                }())
+            }, openLocation: function (a) {
+                c("openLocation", {
+                    latitude: a.latitude,
+                    longitude: a.longitude,
+                    name: a.name || "",
+                    address: a.address || "",
+                    scale: a.scale || 28,
+                    infoUrl: a.infoUrl || ""
+                }, a)
+            }, getLocation: function (a) {
+                a = a || {}, c(p.getLocation, {type: a.type || "wgs84"}, function () {
+                    return a._complete = function (a) {
+                        delete a.type
+                    }, a
+                }())
+            }, hideOptionMenu: function (a) {
+                c("hideOptionMenu", {}, a)
+            }, showOptionMenu: function (a) {
+                c("showOptionMenu", {}, a)
+            }, closeWindow: function (a) {
+                a = a || {}, c("closeWindow", {}, a)
+            }, hideMenuItems: function (a) {
+                c("hideMenuItems", {menuList: a.menuList}, a)
+            }, showMenuItems: function (a) {
+                c("showMenuItems", {menuList: a.menuList}, a)
+            }, hideAllNonBaseMenuItem: function (a) {
+                c("hideAllNonBaseMenuItem", {}, a)
+            }, showAllNonBaseMenuItem: function (a) {
+                c("showAllNonBaseMenuItem", {}, a)
+            }, scanQRCode: function (a) {
+                a = a || {}, c("scanQRCode", {
+                    needResult: a.needResult || 0,
+                    scanType: a.scanType || ["qrCode", "barCode"]
+                }, function () {
+                    return a._complete = function (a) {
+                        if (z) {
+                            var b = a.resultStr;
+                            if (b) {
+                                var c = JSON.parse(b);
+                                a.resultStr = c && c.scan_code && c.scan_code.scan_result
+                            }
+                        }
+                    }, a
+                }())
+            }, openAddress: function (a) {
+                c(p.openAddress, {}, function () {
+                    return a._complete = function (a) {
+                        a = g(a)
+                    }, a
+                }())
+            }, openProductSpecificView: function (a) {
+                c(p.openProductSpecificView, {pid: a.productId, view_type: a.viewType || 0, ext_info: a.extInfo}, a)
+            }, addCard: function (a) {
+                for (var b = a.cardList, d = [], e = 0, f = b.length; f > e; ++e) {
+                    var g = b[e], h = {card_id: g.cardId, card_ext: g.cardExt};
+                    d.push(h)
+                }
+                c(p.addCard, {card_list: d}, function () {
+                    return a._complete = function (a) {
+                        var b = a.card_list;
+                        if (b) {
+                            b = JSON.parse(b);
+                            for (var c = 0, d = b.length; d > c; ++c) {
+                                var e = b[c];
+                                e.cardId = e.card_id, e.cardExt = e.card_ext, e.isSuccess = e.is_succ ? !0 : !1, delete e.card_id, delete e.card_ext, delete e.is_succ
+                            }
+                            a.cardList = b, delete a.card_list
+                        }
+                    }, a
+                }())
+            }, chooseCard: function (a) {
+                c("chooseCard", {
+                    app_id: D.appId,
+                    location_id: a.shopId || "",
+                    sign_type: a.signType || "SHA1",
+                    card_id: a.cardId || "",
+                    card_type: a.cardType || "",
+                    card_sign: a.cardSign,
+                    time_stamp: a.timestamp + "",
+                    nonce_str: a.nonceStr
+                }, function () {
+                    return a._complete = function (a) {
+                        a.cardList = a.choose_card_info, delete a.choose_card_info
+                    }, a
+                }())
+            }, openCard: function (a) {
+                for (var b = a.cardList, d = [], e = 0, f = b.length; f > e; ++e) {
+                    var g = b[e], h = {card_id: g.cardId, code: g.code};
+                    d.push(h)
+                }
+                c(p.openCard, {card_list: d}, a)
+            }, consumeAndShareCard: function (a) {
+                c(p.consumeAndShareCard, {consumedCardId: a.cardId, consumedCode: a.code}, a)
+            }, chooseWXPay: function (a) {
+                c(p.chooseWXPay, f(a), a)
+            }, openEnterpriseRedPacket: function (a) {
+                c(p.openEnterpriseRedPacket, f(a), a)
+            }, startSearchBeacons: function (a) {
+                c(p.startSearchBeacons, {ticket: a.ticket}, a)
+            }, stopSearchBeacons: function (a) {
+                c(p.stopSearchBeacons, {}, a)
+            }, onSearchBeacons: function (a) {
+                d(p.onSearchBeacons, a)
+            }, openEnterpriseChat: function (a) {
+                c("openEnterpriseChat", {useridlist: a.userIds, chatname: a.groupName}, a)
+            }
+        }, J = 1, K = {};
+        return r.addEventListener("error", function (a) {
+            if (!y) {
+                var b = a.target, c = b.tagName, d = b.src;
+                if ("IMG" == c || "VIDEO" == c || "AUDIO" == c || "SOURCE" == c) {
+                    var e = -1 != d.indexOf("wxlocalresource://");
+                    if (e) {
+                        a.preventDefault(), a.stopPropagation();
+                        var f = b["wx-id"];
+                        if (f || (f = J++, b["wx-id"] = f), K[f])return;
+                        K[f] = !0, wx.getLocalImgData({
+                            localId: d, success: function (a) {
+                                b.src = a.localData
+                            }
+                        })
+                    }
+                }
+            }
+        }, !0), r.addEventListener("load", function (a) {
+            if (!y) {
+                var b = a.target, c = b.tagName;
+                b.src;
+                if ("IMG" == c || "VIDEO" == c || "AUDIO" == c || "SOURCE" == c) {
+                    var d = b["wx-id"];
+                    d && (K[d] = !1)
+                }
+            }
+        }, !0), b && (a.wx = a.jWeixin = I), I
+    }
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
 /* 8 */
@@ -11296,6 +11743,7 @@ __webpack_require__(0);
 
 __webpack_require__(2);
 __webpack_require__(1);
+__webpack_require__(6);
 __webpack_require__(0);
 
 /***/ }),
@@ -11307,7 +11755,6 @@ __webpack_require__(0);
 
 __webpack_require__(2);
 __webpack_require__(1);
-__webpack_require__(6);
 __webpack_require__(0);
 
 /***/ }),
@@ -11315,29 +11762,33 @@ __webpack_require__(0);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {
+
 
 __webpack_require__(2);
 __webpack_require__(1);
+__webpack_require__(6);
 __webpack_require__(0);
-var checked = __webpack_require__(5);
-
-$('.btn').click(function () {
-    console.log(checked);
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(wx, $) {
 
 __webpack_require__(2);
 __webpack_require__(1);
-__webpack_require__(21);
 __webpack_require__(0);
+__webpack_require__(21);
+wx.config({
+    debug: true
+});
+var checked = __webpack_require__(5);
+
+$('.btn').click(function () {
+    console.log(checked);
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7), __webpack_require__(3)))
 
 /***/ }),
 /* 12 */
@@ -11346,11 +11797,23 @@ __webpack_require__(0);
 "use strict";
 
 
-__webpack_require__(4);
-__webpack_require__(18);
+__webpack_require__(2);
+__webpack_require__(1);
+__webpack_require__(25);
+__webpack_require__(0);
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(4);
+__webpack_require__(22);
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11367,7 +11830,7 @@ $('.btn').click(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11376,13 +11839,6 @@ $('.btn').click(function () {
 __webpack_require__(2);
 __webpack_require__(1);
 __webpack_require__(0);
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 
 /***/ }),
 /* 16 */
@@ -11393,6 +11849,27 @@ __webpack_require__(0);
 
 /***/ }),
 /* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {
+
+var rate = __webpack_require__(20);
+
+$('.btn').click(function () {
+    console.log(rate);
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11416,31 +11893,67 @@ $('#goTop').on('click', function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 20 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {
+
+var rate = {};
+
+$('.f-star i').click(function () {
+    var id = this.id,
+        stars = $('.f-star i');
+
+    stars.removeClass('star');
+
+    rate['star'] = id;
+
+    for (var i = 0; i < this.id; i++) {
+        $(stars[i]).addClass('star');
+    }
+});
+
+module.exports = rate;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(0);
+
+var uploadCount = 0;
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 22 */
+/* 23 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -11452,80 +11965,87 @@ $('#goTop').on('click', function () {
 C||h.on("mousedown",function(e){t(e.pageY),e.stopPropagation(),e.preventDefault()}).on("mousemove",function(e){m&&(n(e.pageY),e.stopPropagation(),e.preventDefault())}).on("mouseup mouseleave",function(e){i(e.pageY),e.stopPropagation(),e.preventDefault()})}},function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});t.depthOf=function e(t){var n=1;return t.children&&t.children[0]&&(n=e(t.children[0])+1),n}},function(e,t){e.exports='<div class="<%= className %>"> <div class=weui-mask></div> <div class=weui-picker> <div class=weui-picker__hd> <a href=javascript:; data-action=cancel class=weui-picker__action>取消</a> <a href=javascript:; data-action=select class=weui-picker__action id=weui-picker-confirm>确定</a> </div> <div class=weui-picker__bd></div> </div> </div> '},function(e,t){e.exports="<div class=weui-picker__group> <div class=weui-picker__mask></div> <div class=weui-picker__indicator></div> <div class=weui-picker__content></div> </div>"},function(e,t,n){"use strict";function i(e){return e&&e.__esModule?e:{default:e}}function a(e){function t(e){t=r.default.noop,a.addClass("weui-animate-fade-out").on("animationend webkitAnimationEnd",function(){a.remove(),s=!1,e&&e()})}function n(e){t(e)}var i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};if(s)return s;i=r.default.extend({className:"",onDelete:r.default.noop},i);var a=(0,r.default)(r.default.render(l.default,r.default.extend({url:e},i)));return(0,r.default)("body").append(a),a.find(".weui-gallery__img").on("click",function(){n()}),a.find(".weui-gallery__del").on("click",function(){i.onDelete.call(this,e)}),a.show().addClass("weui-animate-fade-in"),s=a[0],s.hide=n,s}Object.defineProperty(t,"__esModule",{value:!0});var o=n(2),r=i(o),u=n(31),l=i(u),s=void 0;t.default=a,e.exports=t.default},function(e,t){e.exports='<div class="weui-gallery <%= className %>"> <span class=weui-gallery__img style="background-image:url(<%= url %>)"></span> <div class=weui-gallery__opr> <a href=javascript: class=weui-gallery__del> <i class="weui-icon-delete weui-icon_gallery-delete"></i> </a> </div> </div> '},function(e,t,n){"use strict";function i(e){return e&&e.__esModule?e:{default:e}}function a(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},n=(0,r.default)(e);if(t=r.default.extend({step:void 0,defaultValue:0,onChange:r.default.noop},t),void 0!==t.step&&(t.step=parseFloat(t.step),!t.step||t.step<0))throw new Error("Slider step must be a positive number.");if(void 0!==t.defaultValue&&t.defaultValue<0||t.defaultValue>100)throw new Error("Slider defaultValue must be >= 0 and <= 100.");return n.forEach(function(e){function n(){var e=r.default.getStyle(l[0],"left");return e=/%/.test(e)?s*parseFloat(e)/100:parseFloat(e)}function i(n){var i=void 0,a=void 0;t.step&&(n=Math.round(n/p)*p),i=f+n,i=i<0?0:i>s?s:i,a=100*i/s,u.css({width:a+"%"}),l.css({left:a+"%"}),t.onChange.call(e,a)}var a=(0,r.default)(e),o=a.find(".weui-slider__inner"),u=a.find(".weui-slider__track"),l=a.find(".weui-slider__handler"),s=parseInt(r.default.getStyle(o[0],"width")),d=o[0].offsetLeft,f=0,c=0,p=void 0;t.step&&(p=s*t.step/100),t.defaultValue&&i(s*t.defaultValue/100),a.on("click",function(e){e.preventDefault(),f=n(),i(e.pageX-d-f)}),l.on("touchstart",function(e){f=n(),c=e.changedTouches[0].clientX}).on("touchmove",function(e){e.preventDefault(),i(e.changedTouches[0].clientX-c)})}),this}Object.defineProperty(t,"__esModule",{value:!0});var o=n(2),r=i(o);t.default=a,e.exports=t.default}])});
 
 /***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(7);
-
-
-/***/ }),
-/* 24 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(8);
 
 
 /***/ }),
-/* 25 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(9);
 
 
 /***/ }),
-/* 26 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(10);
 
 
 /***/ }),
-/* 27 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(11);
 
 
 /***/ }),
-/* 28 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(12);
 
 
 /***/ }),
-/* 29 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(13);
 
 
 /***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(4);
-
-
-/***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(14);
 
 
 /***/ }),
-/* 32 */
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(4);
+
+
+/***/ }),
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(15);
 
 
 /***/ }),
-/* 33 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(16);
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(17);
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(18);
 
 
 /***/ })

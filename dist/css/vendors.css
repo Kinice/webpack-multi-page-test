@@ -19,12 +19,12 @@ body {
 }
 a {
   text-decoration: none;
-  color: blue;
+  color: #43adff;
   transition: color 0.3s ease-out;
 }
 a,
 a:hover {
-  color: blue;
+  color: #43adff;
 }
 abbr[title] {
   border-bottom: 1px dotted;
@@ -73,6 +73,9 @@ pre,
 samp {
   font-family: monospace, monospace;
   font-size: .1em;
+}
+i {
+  color: #bbb;
 }
 button,
 input,
@@ -181,6 +184,19 @@ textarea::-webkit-input-placeholder {
 .point {
   color: #fe573d;
 }
+.warn {
+  color: #fd853e;
+}
+.star {
+  color: #fbab29;
+}
+.img-con {
+  padding: .2rem .1rem;
+}
+.img-con img {
+  width: 1.65rem;
+  height: 100%;
+}
 .btn {
   width: 100%;
   color: #fff;
@@ -193,13 +209,25 @@ textarea::-webkit-input-placeholder {
 .btn-disabled {
   background-color: #ccc;
 }
+.btn-warn {
+  background-color: #fd853e;
+}
+.btn-yel {
+  background-color: #fed037;
+}
+.btn-pul {
+  background-color: #d78fc7;
+}
+.btn-con {
+  padding: .3rem .5rem;
+}
 .big {
   margin-top: 0.4rem;
   font-size: .36rem;
 }
 .flex {
-  display: -webkit-flex;
-  display: flex;
+  display: -webkit-flex !important;
+  display: flex !important;
   justify-content: space-between;
 }
 .flex .vcode {
@@ -207,6 +235,9 @@ textarea::-webkit-input-placeholder {
 }
 .flex .vcode-btn {
   width: 2.4rem;
+}
+.flex-around {
+  justify-content: space-around;
 }
 .m-info {
   font-size: .24rem;
@@ -254,11 +285,25 @@ textarea::-webkit-input-placeholder {
 .m-confirm .price p {
   font-size: .6rem;
 }
+.m-confirm .f-star {
+  margin-top: .28rem;
+}
+.m-confirm .f-star i {
+  font-size: .5rem;
+  letter-spacing: .1rem;
+}
 .m-confirm .info {
   margin: .4rem 0 .6rem;
+  padding: 0 .4rem;
 }
 .m-confirm .info p {
   color: #666;
+}
+.m-confirm .info textarea {
+  width: 100%;
+  border: .02rem solid #aaa;
+  padding: .1rem .2rem;
+  height: 3rem;
 }
 .m-result {
   padding: .3rem .5rem;
@@ -268,6 +313,118 @@ textarea::-webkit-input-placeholder {
 }
 .m-result .info {
   margin: .4rem 0;
+}
+.m-card {
+  background-color: #fff;
+  margin-bottom: .2rem;
+  padding: 0 .44rem;
+  box-shadow: 0 0 .06rem #ddd;
+}
+.m-card .title {
+  font-size: .3rem;
+  font-weight: 500;
+  padding: .3rem 0;
+}
+.m-card .p-list {
+  padding: .2rem 0;
+}
+.m-card .p-list .p-list-sub {
+  padding-left: .48rem;
+  padding-top: .1rem;
+}
+.m-card .p-list .btn {
+  width: 1.6rem;
+  font-size: .36rem;
+}
+.m-card .p-list ul {
+  padding-left: .46rem;
+}
+.m-card .p-list ul li {
+  font-size: .36rem;
+  color: #ffa366;
+  list-style: disc;
+}
+.m-card .p-list ul li span {
+  font-size: .28rem;
+  color: #000;
+}
+.m-card .p-list .avatar {
+  width: 1.3rem;
+}
+.m-card .p-list .avatar img {
+  border-radius: 50%;
+}
+.m-card .p-list .teacher-intro {
+  width: 4.7rem;
+}
+.m-card .p-list .teacher-intro .intro-con {
+  padding: .05rem 0;
+}
+.m-card .p-list .teacher-intro .intro-con > div {
+  display: inline-block;
+  margin-right: .2rem;
+}
+.m-card .p-list .teacher-intro .intro-con .tea-name {
+  font-size: .3rem;
+}
+.m-card .p-list .teacher-intro .intro-con .s-intro {
+  font-size: .26rem;
+  color: #666;
+}
+.m-card .p-list .teacher-intro .intro-con .label {
+  padding: 0 .1rem;
+  border-radius: .04rem;
+  font-size: .26rem;
+  color: #fff;
+}
+.m-card .s-list {
+  padding: .3rem 0;
+  border-top: .02rem solid #dfdfdf;
+}
+.m-card .s-list > div {
+  color: #666;
+}
+.m-card .l-list {
+  display: block;
+  position: relative;
+  padding: .2rem 0;
+  border-top: 0.02rem solid #dfdfdf;
+}
+.m-card .l-list > div {
+  padding: .05rem 0;
+  color: #666;
+}
+.m-card .l-list:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: .26rem;
+  width: .26rem;
+  border-style: solid;
+  border-width: .03rem;
+  border-color: #a0a0a0 #a0a0a0 transparent transparent;
+  transform: rotate(45deg) translateX(-50%);
+}
+.m-card .l-list .class-info {
+  width: 86%;
+  font-size: .26rem;
+}
+.m-card .rate {
+  border: none !important;
+  align-items: center;
+}
+.m-card .rate .class-name {
+  font-size: .30rem;
+  font-weight: 500;
+}
+.m-card .rate .btn {
+  width: 1.9rem;
+  border-radius: 0;
+}
+.m-card .rate .func {
+  margin-right: .8rem;
 }
 .weui-msg p {
   text-align: center;

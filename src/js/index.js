@@ -6,19 +6,19 @@ require('weui')
 
 //Common state define
 var form = {
-    name: '',
-    phone: '',
-    verify_code: ''
+    'name': '',
+    'mobile': '',
+    'code': ''
 }
 var state = {
     name: 0,
-    phone: 0,
-    verify_code: 0
+    mobile: 0,
+    code: 0
 }
 var reg = {
     name: /^[a-zA-Z\u4e00-\u9fa5]{1,20}$/,
-    phone: /^1\d{10}$/,
-    verify_code: /^\d{6}$/
+    mobile: /^1\d{10}$/,
+    code: /^\d{6}$/
 }
 var isSentVcode = false,
     isCheckVcode = false,
@@ -26,8 +26,9 @@ var isSentVcode = false,
 var isCounting = false,
     countDown = 60,
     t;
-var signupApi = '../../api/1.0/signup',
-    vcodeApi = '../../api/1.0/send_vcode',
+var signupApi = '/weixin/auth/signup',
+    // vcodeApi = '../../api/1.0/send_vcode',
+    vcodeApi = '/weixin/auth/send_validate_code',
     checkVcodeApi = '../../api/1.0/check_vcode';
 
 var url = './result.html';
@@ -55,16 +56,14 @@ var setTime = function(val){//vcode count
 }
 //send vcode event
 $('#sendVcode').on('click',function(e){
-    var phone = $('#phone').val();
-    if(reg['phone'].test(phone)){
-        var data = JSON.stringify({
-            'phone': phone
-        })
+    var mobile = $('#mobile').val();
+    if(reg['mobile'].test(mobile)){
+        var data = {
+            'mobile': mobile
+        }
         $.ajax(vcodeApi,{
             'data': data,
             'type': 'POST',
-            'processData': false,
-            'contentType': 'application/json',
             'success': function(d){
                 if(d.request_result.code == 0){
                     weui.toast('发送成功',2000);
@@ -104,36 +103,24 @@ $('#confirm').on('click',function(e){
         else state[i] = 0;
     }
 
-    if(allStates == Object.keys(form).length && !isChangePhone){
-        $.ajax(checkVcodeApi,{
-            'data': JSON.stringify({
-                'phone': form.phone,
-                'verify_code': form.verify_code
-            }),
+    if(!isChangePhone){
+        console.log(form)
+        $.ajax(signupApi,{
+            'data': {
+                name: $('#name').val(),
+                mobile: $('#mobile').val(),
+                code: $('#code').val()
+            },
             'type': 'POST',
-            'processData': false,
-            'contentType': 'application/json',
             'success': function(d){
-                if(d.request_result.code == 0){
-                    $.ajax(signupApi,{
-                        'data': JSON.stringify(form),
-                        'type': 'POST',
-                        'processData': false,
-                        'contentType': 'application/json',
-                        'success': function(da){
-                            if(da.request_result.code == 0){
-                                window.location.href = url;
-                            }else{
-                                weui.alert(da.request_result.display_message);
-                            }
-                        },
-                        'error': function(){
-                            weui.alert('验证失败！请检查网络环境是否良好')
-                        }
-                    });
+                if(d.code == 0){
+                    window.location.href = url;
                 }else{
-                    weui.alert(d.request_result.display_message);
+                    weui.alert(d.data);
                 }
+            },
+            'error': function(){
+                weui.alert('验证失败！请检查网络环境是否良好')
             }
         });
     }else{
@@ -143,10 +130,9 @@ $('#confirm').on('click',function(e){
             for(var i in state){
                 if(state[i]==0){
                     switch(i){
-                        case 'coupon_code': weui.alert('邀请码不正确');break;
                         case 'name': weui.alert('请输入正确的姓名');break;
-                        case 'phone': weui.alert('请输入正确的手机号');break;
-                        case 'verify_code': weui.alert('请输入正确的验证码');break;
+                        case 'mobile': weui.alert('请输入正确的手机号');break;
+                        case 'code': weui.alert('请输入正确的验证码');break;
                         default: weui.alert('错误！请重新打开页面');break;
                     }
                 }
