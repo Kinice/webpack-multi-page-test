@@ -14,7 +14,7 @@ $('input[type="checkbox"]').change(function(){
     }
 })
 
-$('input[type="radio"]').change(function(){
+$('.timepick-radio').on('change','input[type="radio"]',function(){
     var parentId = $(this).parents('.timepick-radio')[0].id
     if(this.checked){
         $(this).parents('.timepick-radio').find('label').removeClass('selected')
