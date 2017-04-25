@@ -191,10 +191,19 @@ textarea::-webkit-input-placeholder {
   color: #fbab29;
 }
 .img-con {
+  flex-wrap: wrap;
+  justify-content: flex-start !important;
   padding: .2rem .1rem;
 }
-.img-con img {
+.img-con .img-item {
   width: 1.65rem;
+  margin-right: .6rem;
+  margin-bottom: .26rem;
+}
+.img-con .weui-uploader__input-box {
+  height: 1.65rem;
+}
+.img-con img {
   height: 100%;
 }
 .btn {
@@ -246,6 +255,7 @@ textarea::-webkit-input-placeholder {
 .g-banner {
   width: 100%;
   line-height: 1;
+  margin-bottom: .3rem;
 }
 .g-banner img {
   width: 100%;

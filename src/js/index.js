@@ -1,6 +1,7 @@
 require('../less/reset.less')
 require('../less/common.less')
 require('../less/index.less')
+require('../libs/iconfont.css')
 require('../libs/jquery.scroll.js')
 require('weui')
 
