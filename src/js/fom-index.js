@@ -19,7 +19,7 @@ var state = {
 var reg = {
     name: /^[a-zA-Z\u4e00-\u9fa5]{1,20}$/,
     mobile: /^1\d{10}$/,
-    code: /^\d{6}$/
+    code: /^\d{0,}$/
 }
 
 var isCounting = false,
@@ -60,7 +60,8 @@ $('#sendVcode').on('click',function(e){
                 'mobile': mobile
             },
             'type': 'POST',
-            'success': function(d){
+            'success': function(data){
+                let d = JSON.parse(data)
                 if(d.code == 0){
                     weui.toast('发送成功',2000);
                     isCounting = true;
@@ -95,9 +96,10 @@ $('#confirm').on('click',function(e){
         $.ajax(signupApi,{
             'data': form,
             'type': 'POST',
-            'success': function(d){
+            'success': function(data){
+                let d = JSON.parse(data)
                 if(d.code == 0){
-                    window.location.href = url
+                    window.location.href = d.data.href
                 }else{
                     weui.alert(getErrorMsg(d))
                 }

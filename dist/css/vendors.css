@@ -196,8 +196,8 @@ textarea::-webkit-input-placeholder {
   padding: .2rem .1rem;
 }
 .img-con .img-item {
-  width: 1.65rem;
-  margin-right: .6rem;
+  width: 28%;
+  margin-right: 5%;
   margin-bottom: .26rem;
 }
 .img-con .weui-uploader__input-box {
@@ -211,6 +211,8 @@ textarea::-webkit-input-placeholder {
   color: #fff;
   background-color: #fe573d;
   height: .9rem;
+  line-height: .9rem;
+  text-align: center;
   border-radius: .08rem;
   border: none;
   font-size: .28rem;
@@ -478,6 +480,7 @@ textarea::-webkit-input-placeholder {
 }
 .m-buysec .m-buylist .small {
   height: .7rem;
+  line-height: .7rem;
   width: 1.5rem;
 }
 .m-buysec .primary {

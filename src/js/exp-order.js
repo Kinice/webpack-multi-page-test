@@ -34,8 +34,8 @@ for(let i = 0; i < dateCount; i++){ //get date for 7 days
     }
     date.setDate(date.getDate()+i+2)
     oneday.year = date.getFullYear()
-    oneday.month = date.getMonth()+1
-    oneday.day = date.getDate()
+    oneday.month = (date.getMonth()+1) < 10 ? '0'+(date.getMonth()+1):(date.getMonth()+1)
+    oneday.day = date.getDate() < 10 ? '0'+date.getDate():date.getDate()
     oneday.week = weeks[date.getDay()]
     times.push(oneday)
 }
@@ -63,9 +63,10 @@ $('#confirm').click(function(){
             description: description
         },
         'type': 'POST',
-        'success': function(d){
+        'success': function(data){
+            let d = JSON.parse(data)
             if(d.code == 0){
-                window.location.href = url
+                window.location.href = d.data.href
             }else{
                 weui.alert(getErrorMsg(d))
             }

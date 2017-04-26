@@ -86,7 +86,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3f0d2b0eb1e461da5257"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1cbe9d0d89b6ee4afa6f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotMainModule = true; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -11130,7 +11130,7 @@ var uploadFiles = {
 };
 
 wx.config({
-    debug: true,
+    debug: false,
     appId: $('#appid').val(),
     timestamp: $('#timestamp').val(),
     nonceStr: $('#nonceStr').val(),
@@ -11733,8 +11733,8 @@ for (var i = 0; i < dateCount; i++) {
     };
     date.setDate(date.getDate() + i + 2);
     oneday.year = date.getFullYear();
-    oneday.month = date.getMonth() + 1;
-    oneday.day = date.getDate();
+    oneday.month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+    oneday.day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
     oneday.week = weeks[date.getDay()];
     times.push(oneday);
 }
@@ -11766,9 +11766,10 @@ $('#confirm').click(function () {
             description: description
         },
         'type': 'POST',
-        'success': function success(d) {
+        'success': function success(data) {
+            var d = JSON.parse(data);
             if (d.code == 0) {
-                window.location.href = url;
+                window.location.href = d.data.href;
             } else {
                 weui.alert(getErrorMsg(d));
             }
@@ -11820,7 +11821,7 @@ var state = {
 var reg = {
     name: /^[a-zA-Z\u4e00-\u9fa5]{1,20}$/,
     mobile: /^1\d{10}$/,
-    code: /^\d{6}$/
+    code: /^\d{0,}$/
 };
 
 var isCounting = false,
@@ -11862,7 +11863,8 @@ $('#sendVcode').on('click', function (e) {
                 'mobile': mobile
             },
             'type': 'POST',
-            'success': function success(d) {
+            'success': function success(data) {
+                var d = JSON.parse(data);
                 if (d.code == 0) {
                     weui.toast('发送成功', 2000);
                     isCounting = true;
@@ -11896,9 +11898,10 @@ $('#confirm').on('click', function (e) {
         $.ajax(signupApi, {
             'data': form,
             'type': 'POST',
-            'success': function success(d) {
+            'success': function success(data) {
+                var d = JSON.parse(data);
                 if (d.code == 0) {
-                    window.location.href = url;
+                    window.location.href = d.data.href;
                 } else {
                     weui.alert(getErrorMsg(d));
                 }
@@ -11970,8 +11973,8 @@ for (var i = 0; i < dateCount; i++) {
     };
     date.setDate(date.getDate() + i + 2);
     oneday.year = date.getFullYear();
-    oneday.month = date.getMonth() + 1;
-    oneday.day = date.getDate();
+    oneday.month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+    oneday.day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
     oneday.week = weeks[date.getDay()];
     times.push(oneday);
 }
@@ -12007,9 +12010,10 @@ $('#confirm').click(function () {
             description: description
         },
         'type': 'POST',
-        'success': function success(d) {
+        'success': function success(data) {
+            var d = JSON.parse(data);
             if (d.code == 0) {
-                window.location.href = url;
+                window.location.href = d.data.href;
             } else {
                 weui.alert(getErrorMsg(d));
             }
@@ -12037,7 +12041,11 @@ __webpack_require__(0);
 
 //Common state define
 var getErrorMsg = function getErrorMsg(d) {
-    return d.data.errors[Object.keys(d.data.errors)[0]][0].err_msg;
+    if (d.data.errors) {
+        return d.data.errors[Object.keys(d.data.errors)[0]][0].err_msg;
+    } else {
+        return '发送失败！请检查网络环境是否良好';
+    }
 };
 var form = {
     name: '',
@@ -12052,7 +12060,7 @@ var state = {
 var reg = {
     name: /^[a-zA-Z\u4e00-\u9fa5]{1,20}$/,
     mobile: /^1\d{10}$/,
-    code: /^\d{6}$/
+    code: /^\d{0,}$/
 };
 
 var isCounting = false,
@@ -12094,7 +12102,8 @@ $('#sendVcode').on('click', function (e) {
                 'mobile': mobile
             },
             'type': 'POST',
-            'success': function success(d) {
+            'success': function success(data) {
+                var d = JSON.parse(data);
                 if (d.code == 0) {
                     weui.toast('发送成功', 2000);
                     isCounting = true;
@@ -12128,9 +12137,10 @@ $('#confirm').on('click', function (e) {
         $.ajax(signupApi, {
             'data': form,
             'type': 'POST',
-            'success': function success(d) {
+            'success': function success(data) {
+                var d = JSON.parse(data);
                 if (d.code == 0) {
-                    window.location.href = url;
+                    window.location.href = d.data.href;
                 } else {
                     weui.alert(getErrorMsg(d));
                 }
@@ -12188,14 +12198,40 @@ __webpack_require__(0);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {
+/* WEBPACK VAR INJECTION */(function($, weui) {
 
 var rate = __webpack_require__(22);
 
+var api = 'api';
+
+var getErrorMsg = function getErrorMsg(d) {
+    return d.data.errors[Object.keys(d.data.errors)[0]][0].err_msg;
+};
+
 $('.btn').click(function () {
-    console.log(rate);
+    if (!rate.star) weui.alert('请给老师评个分吧～');
+    var info = $('#info').val();
+
+    $.ajax(api, {
+        data: {
+            star: rate.star,
+            info: info
+        },
+        'type': 'POST',
+        'success': function success(data) {
+            var d = JSON.parse(data);
+            if (d.code == 0) {
+                window.location.href = d.data.href;
+            } else {
+                weui.alert(getErrorMsg(d));
+            }
+        },
+        'error': function error() {
+            weui.alert('评分失败！请检查网络环境是否良好');
+        }
+    });
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
 
 /***/ }),
 /* 21 */

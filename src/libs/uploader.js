@@ -10,7 +10,7 @@ let uploadFiles = {
 }
 
 wx.config({
-    debug: true, 
+    debug: false, 
     appId: $('#appid').val(),
     timestamp: $('#timestamp').val(),
     nonceStr: $('#nonceStr').val(),
