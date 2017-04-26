@@ -3243,6 +3243,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .getNow button {
   width: 2.1rem;
   height: .7rem;
+  line-height: .7rem;
   font-size: .28rem;
 }
 .getNow button p {

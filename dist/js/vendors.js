@@ -86,7 +86,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1cbe9d0d89b6ee4afa6f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "dce62a8c2a49332b3d2f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotMainModule = true; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -794,18 +794,6 @@
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11065,6 +11053,18 @@ return jQuery;
 
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11078,111 +11078,6 @@ C||h.on("mousedown",function(e){t(e.pageY),e.stopPropagation(),e.preventDefault(
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {
-
-__webpack_require__(25);
-
-var checked = {};
-
-$('input[type="checkbox"]').change(function () {
-    var parentId = $(this).parents('.timepick-radio')[0].id;
-    if (this.checked) {
-        if ($.inArray('disabled', $(this).siblings('label')[0].className.split(' ')) == '-1') {
-            $(this).siblings('label').addClass('selected');
-            checked[parentId] = $(this).parents('.timepick-radio').find('input[type="checkbox"]:checked');
-        }
-    } else {
-        $(this).siblings('label').removeClass('selected');
-    }
-});
-
-$('.timepick-radio').on('change', 'input[type="radio"]', function () {
-    var parentId = $(this).parents('.timepick-radio')[0].id;
-    if (this.checked) {
-        $(this).parents('.timepick-radio').find('label').removeClass('selected');
-        $(this).siblings('label').addClass('selected');
-        checked[parentId] = $(this).parents('.timepick-radio').find('input[type="radio"]:checked');
-    }
-});
-
-module.exports = checked;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(wx, $) {
-
-__webpack_require__(0);
-
-var uploadCount = 0;
-
-var imgs = [];
-
-var uploadFiles = {
-    length: 0,
-    imgs: ''
-};
-
-wx.config({
-    debug: false,
-    appId: $('#appid').val(),
-    timestamp: $('#timestamp').val(),
-    nonceStr: $('#nonceStr').val(),
-    signature: $('#signature').val(),
-    jsApiList: ['chooseImage', 'previewImage', 'getLocalImgData', 'uploadImage']
-});
-
-var imgUpload = function imgUpload(localId) {
-    wx.uploadImage({
-        localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
-        isShowProgressTips: 1, // 默认为1，显示进度提示
-        success: function success(res) {
-            var serverId = res.serverId; // 返回图片的服务器端ID
-            imgs.push(serverId);
-            uploadFiles.length++;
-        }
-    });
-};
-
-wx.ready(function () {
-    $(document).ready(function () {
-        $('#uploaderCustomInput').click(function () {
-            wx.chooseImage({
-                count: 1,
-                sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-                sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-                success: function success(res) {
-                    var localIds = res.localIds;
-                    for (var i = 0; i < localIds.length; i++) {
-                        $('#uploaderBox').before('<img class="img-item" src="' + localIds[i] + '">');
-                        imgUpload(localIds[i]);
-                    }
-                    uploadFiles.imgs = imgs.join(',');
-                }
-            });
-        });
-    });
-});
-wx.error(function (res) {
-    console.log(res);
-});
-module.exports = uploadFiles;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(3)))
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(wx) {!function (a, b) {
@@ -11652,7 +11547,115 @@ module.exports = uploadFiles;
         }, !0), b && (a.wx = a.jWeixin = I), I
     }
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {
+
+__webpack_require__(26);
+
+var checked = {};
+
+$('input[type="checkbox"]').change(function () {
+    var parentId = $(this).parents('.timepick-radio')[0].id;
+    if (this.checked) {
+        if ($.inArray('disabled', $(this).siblings('label')[0].className.split(' ')) == '-1') {
+            $(this).siblings('label').addClass('selected');
+            checked[parentId] = $(this).parents('.timepick-radio').find('input[type="checkbox"]:checked');
+        }
+    } else {
+        $(this).siblings('label').removeClass('selected');
+    }
+});
+
+$('.timepick-radio').on('change', 'input[type="radio"]', function () {
+    var parentId = $(this).parents('.timepick-radio')[0].id;
+    if (this.checked) {
+        $(this).parents('.timepick-radio').find('label').removeClass('selected');
+        $(this).siblings('label').addClass('selected');
+        checked[parentId] = $(this).parents('.timepick-radio').find('input[type="radio"]:checked');
+    }
+});
+
+module.exports = checked;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(wx, $, weui) {
+
+__webpack_require__(0);
+
+var uploadCount = 18;
+
+var imgs = [];
+
+var uploadFiles = {
+    length: 0,
+    imgs: ''
+};
+
+wx.config({
+    debug: false,
+    appId: $('#appid').val(),
+    timestamp: $('#timestamp').val(),
+    nonceStr: $('#nonceStr').val(),
+    signature: $('#signature').val(),
+    jsApiList: ['chooseImage', 'previewImage', 'getLocalImgData', 'uploadImage']
+});
+
+var imgUpload = function imgUpload(localId) {
+    wx.uploadImage({
+        localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+        isShowProgressTips: 1, // 默认为1，显示进度提示
+        success: function success(res) {
+            var serverId = res.serverId; // 返回图片的服务器端ID
+            imgs.push(serverId);
+            uploadFiles.imgs = imgs.join(',');
+            uploadFiles.length++;
+        }
+    });
+};
+
+wx.ready(function () {
+    $(document).ready(function () {
+        $('#uploaderCustomInput').click(function () {
+            if (uploadFiles.length >= uploadCount) {
+                return weui.alert('不能添加更多图片了');
+            }
+            wx.chooseImage({
+                count: 1,
+                sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                success: function success(res) {
+                    var localIds = res.localIds;
+                    for (var i = 0; i < localIds.length; i++) {
+                        $('#uploaderBox').before('<img class="img-item" src="' + localIds[i] + '">');
+                        imgUpload(localIds[i]);
+                    }
+                }
+            });
+        });
+    });
+});
+wx.error(function (res) {
+    console.log(res);
+});
+module.exports = uploadFiles;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(1), __webpack_require__(4)))
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 9 */
@@ -11661,10 +11664,11 @@ module.exports = uploadFiles;
 "use strict";
 
 
+__webpack_require__(3);
 __webpack_require__(2);
-__webpack_require__(1);
-__webpack_require__(7);
+__webpack_require__(8);
 __webpack_require__(0);
+__webpack_require__(23);
 
 /***/ }),
 /* 10 */
@@ -11673,8 +11677,8 @@ __webpack_require__(0);
 "use strict";
 
 
+__webpack_require__(3);
 __webpack_require__(2);
-__webpack_require__(1);
 __webpack_require__(0);
 
 /***/ }),
@@ -11684,9 +11688,9 @@ __webpack_require__(0);
 "use strict";
 
 
+__webpack_require__(3);
 __webpack_require__(2);
-__webpack_require__(1);
-__webpack_require__(7);
+__webpack_require__(8);
 __webpack_require__(0);
 
 /***/ }),
@@ -11696,11 +11700,11 @@ __webpack_require__(0);
 "use strict";
 /* WEBPACK VAR INJECTION */(function($, weui) {
 
+__webpack_require__(3);
 __webpack_require__(2);
-__webpack_require__(1);
 __webpack_require__(0);
-var imgs = __webpack_require__(6);
-var checked = __webpack_require__(5);
+var imgs = __webpack_require__(7);
+var checked = __webpack_require__(6);
 
 var dateCount = 8;
 
@@ -11779,7 +11783,7 @@ $('#confirm').click(function () {
         }
     });
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(4)))
 
 /***/ }),
 /* 13 */
@@ -11788,9 +11792,9 @@ $('#confirm').click(function () {
 "use strict";
 
 
+__webpack_require__(3);
 __webpack_require__(2);
-__webpack_require__(1);
-__webpack_require__(26);
+__webpack_require__(27);
 __webpack_require__(0);
 
 /***/ }),
@@ -11800,8 +11804,8 @@ __webpack_require__(0);
 "use strict";
 /* WEBPACK VAR INJECTION */(function($, weui) {
 
+__webpack_require__(3);
 __webpack_require__(2);
-__webpack_require__(1);
 __webpack_require__(0);
 
 //Common state define
@@ -11927,7 +11931,7 @@ $('#confirm').on('click', function (e) {
         }
     }
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(4)))
 
 /***/ }),
 /* 15 */
@@ -11936,11 +11940,11 @@ $('#confirm').on('click', function (e) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function($, weui) {
 
+__webpack_require__(3);
 __webpack_require__(2);
-__webpack_require__(1);
 __webpack_require__(0);
-var imgs = __webpack_require__(6);
-var checked = __webpack_require__(5);
+var imgs = __webpack_require__(7);
+var checked = __webpack_require__(6);
 
 var dateCount = 8;
 
@@ -12023,7 +12027,7 @@ $('#confirm').click(function () {
         }
     });
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(4)))
 
 /***/ }),
 /* 16 */
@@ -12032,10 +12036,10 @@ $('#confirm').click(function () {
 "use strict";
 /* WEBPACK VAR INJECTION */(function($, weui) {
 
+__webpack_require__(3);
 __webpack_require__(2);
-__webpack_require__(1);
+__webpack_require__(25);
 __webpack_require__(24);
-__webpack_require__(23);
 __webpack_require__(21);
 __webpack_require__(0);
 
@@ -12166,7 +12170,7 @@ $('#confirm').on('click', function (e) {
         }
     }
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(4)))
 
 /***/ }),
 /* 17 */
@@ -12175,8 +12179,8 @@ $('#confirm').on('click', function (e) {
 "use strict";
 
 
+__webpack_require__(3);
 __webpack_require__(2);
-__webpack_require__(1);
 __webpack_require__(0);
 
 /***/ }),
@@ -12231,7 +12235,7 @@ $('.btn').click(function () {
         }
     });
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(4)))
 
 /***/ }),
 /* 21 */
@@ -12255,7 +12259,7 @@ $('#goTop').on('click', function () {
         scrollTop: 0
     }, 500);
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 22 */
@@ -12280,13 +12284,46 @@ $('.f-star i').click(function () {
 });
 
 module.exports = rate;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 23 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+/* WEBPACK VAR INJECTION */(function(wx, $) {
+
+__webpack_require__(0);
+
+wx.config({
+    debug: true,
+    appId: $('#appid').val(),
+    timestamp: $('#timestamp').val(),
+    nonceStr: $('#nonceStr').val(),
+    signature: $('#signature').val(),
+    jsApiList: ['chooseWXPay']
+});
+
+wx.ready(function () {
+    $(document).ready(function () {
+        wx.chooseWXPay({
+            timestamp: $('#pay-timestamp').val(),
+            nonceStr: $('#pay-nonceStr').val(),
+            package: $('#pay-package').val(),
+            signType: $('#pay-signType').val(),
+            paySign: $('#pay-paySign').val(),
+            success: function success(res) {
+                var urlId = $('#pay-successPage').val();
+                window.location.href = '/weixin/course/buy_success/' + urlId;
+            }
+        });
+    });
+});
+
+wx.error(function (res) {
+    console.info(res);
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(1)))
 
 /***/ }),
 /* 24 */
@@ -12308,83 +12345,89 @@ module.exports = rate;
 
 /***/ }),
 /* 27 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(9);
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(10);
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(11);
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(12);
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(13);
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(14);
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(15);
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(16);
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(17);
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(18);
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(19);
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(20);

@@ -1,6 +1,6 @@
 require('weui')
 
-let uploadCount = 0
+let uploadCount = 18
 
 let imgs = []
 
@@ -25,6 +25,7 @@ let imgUpload = (localId) => {
         success: function (res){
             var serverId = res.serverId; // 返回图片的服务器端ID
             imgs.push(serverId);
+            uploadFiles.imgs = imgs.join(',')
             uploadFiles.length++
         }
     })
@@ -33,6 +34,9 @@ let imgUpload = (localId) => {
 wx.ready(function(){
     $(document).ready(function(){
         $('#uploaderCustomInput').click(function(){
+            if(uploadFiles.length>=uploadCount){
+                return weui.alert('不能添加更多图片了')
+            }
             wx.chooseImage({
                 count: 1,
                 sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -43,7 +47,6 @@ wx.ready(function(){
                         $('#uploaderBox').before('<img class="img-item" src="'+localIds[i]+'">')
                         imgUpload(localIds[i])
                     }
-                    uploadFiles.imgs = imgs.join(',')
                 }
             })
         })
