@@ -13,6 +13,12 @@
     justify-content: flex-start !important;
     padding: .2rem .1rem;
     .img-item{
+        &:before{
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
         width: 28%;
         margin-right: 5%;
         margin-bottom: .26rem;
@@ -26,7 +32,7 @@
 }
 //button
 .btn{
-
+    display: block;
     width: 100%;
     color: #fff;
     background-color: #fe573d;
@@ -51,6 +57,13 @@
 }
 .btn-con{
     padding: .3rem .5rem;
+}
+.btn-con-fixed{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 0 .12rem #ddd;
 }
 .big{
     margin-top: 0.4rem;
@@ -262,6 +275,40 @@
         .func{
             margin-right: .8rem;
         }
+    }
+}
+.card-final{
+    margin-bottom: 1.7rem;
+}
+//label color
+.lb-blue{
+    background-color: #71cef1;
+}
+.lb-pink{
+    background-color: #ff9bcd;
+}
+.lb-green{
+    background-color: #a2d66a;
+}
+.lb-yellow{
+    background-color: #ffe25c;
+}
+.lb-purple{
+    background-color: #d78fc7;
+}
+.lb-warn{
+    background-color: #fd853e;
+}
+//
+.up-delete{
+    display: inline-block;
+    position: relative;
+    &:before{
+        display: block !important;
+        position: absolute !important;
+        right: -.2rem !important;
+        top: -.34rem !important;
+        font-size: .44rem !important;
     }
 }
 //weui
