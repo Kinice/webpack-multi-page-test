@@ -201,17 +201,11 @@ textarea::-webkit-input-placeholder {
   margin-right: 5%;
   margin-bottom: .26rem;
 }
-.img-con .img-item:before {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
 .img-con .weui-uploader__input-box {
   height: 1.65rem;
 }
 .img-con img {
-  height: 100%;
+  width: 100%;
 }
 .btn {
   display: block;
@@ -479,6 +473,7 @@ textarea::-webkit-input-placeholder {
   position: relative;
 }
 .up-delete:before {
+  content: '\E621';
   display: block !important;
   position: absolute !important;
   right: -0.2rem !important;

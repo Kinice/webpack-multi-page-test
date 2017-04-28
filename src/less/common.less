@@ -13,12 +13,6 @@
     justify-content: flex-start !important;
     padding: .2rem .1rem;
     .img-item{
-        &:before{
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
         width: 28%;
         margin-right: 5%;
         margin-bottom: .26rem;
@@ -27,7 +21,7 @@
         height: 1.65rem;
     }
     img{
-        height: 100%;
+        width: 100%;
     }
 }
 //button
@@ -304,6 +298,7 @@
     display: inline-block;
     position: relative;
     &:before{
+        content: '\E621';
         display: block !important;
         position: absolute !important;
         right: -.2rem !important;
