@@ -226,7 +226,16 @@
         &>div{
             color: #666;
         }
-        
+        .course{
+            width: 25%;
+            color: #333;
+        }
+        .count{
+            width: 22%;
+        }
+        .time{
+            max-width: 43%;
+        }
     }
     .l-list{
         display: block;
@@ -251,8 +260,11 @@
             transform: rotate(45deg) translateX(-50%);
         }
         .class-info{
-            width: 86%;
             font-size: .26rem;
+            justify-content: flex-start;
+            .l-info:first-child{
+                width: 67%;
+            }
         }
     }
     .rate{

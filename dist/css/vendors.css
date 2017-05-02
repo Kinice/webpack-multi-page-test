@@ -405,6 +405,16 @@ textarea::-webkit-input-placeholder {
 .m-card .s-list > div {
   color: #666;
 }
+.m-card .s-list .course {
+  width: 25%;
+  color: #333;
+}
+.m-card .s-list .count {
+  width: 22%;
+}
+.m-card .s-list .time {
+  max-width: 43%;
+}
 .m-card .l-list {
   display: block;
   position: relative;
@@ -429,8 +439,11 @@ textarea::-webkit-input-placeholder {
   transform: rotate(45deg) translateX(-50%);
 }
 .m-card .l-list .class-info {
-  width: 86%;
   font-size: .26rem;
+  justify-content: flex-start;
+}
+.m-card .l-list .class-info .l-info:first-child {
+  width: 67%;
 }
 .m-card .rate {
   border: none !important;
@@ -3294,11 +3307,11 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 @font-face {font-family: "iconfont";
-  src: url(/weixin/assets/./fonts/iconfont.eot); /* IE9*/
-  src: url(/weixin/assets/./fonts/iconfont.eot#iefix) format('embedded-opentype'), 
-  url(/weixin/assets/./fonts/iconfont.woff) format('woff'), 
-  url(/weixin/assets/./fonts/iconfont.ttf) format('truetype'), 
-  url(/weixin/assets/./fonts/iconfont.svg#iconfont) format('svg'); /* iOS 4.1- */
+  src: url(/dist/./fonts/iconfont.eot); /* IE9*/
+  src: url(/dist/./fonts/iconfont.eot#iefix) format('embedded-opentype'), 
+  url(/dist/./fonts/iconfont.woff) format('woff'), 
+  url(/dist/./fonts/iconfont.ttf) format('truetype'), 
+  url(/dist/./fonts/iconfont.svg#iconfont) format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
