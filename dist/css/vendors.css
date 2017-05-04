@@ -310,7 +310,7 @@ textarea::-webkit-input-placeholder {
   margin-top: .28rem;
 }
 .m-confirm .f-star i {
-  font-size: .5rem;
+  font-size: .6rem;
   letter-spacing: .1rem;
 }
 .m-confirm .info {
@@ -319,6 +319,8 @@ textarea::-webkit-input-placeholder {
 }
 .m-confirm .info p {
   color: #666;
+  text-align: left;
+  font-size: .30rem;
 }
 .m-confirm .info textarea {
   width: 100%;
@@ -3307,11 +3309,11 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 @font-face {font-family: "iconfont";
-  src: url(/dist/./fonts/iconfont.eot); /* IE9*/
-  src: url(/dist/./fonts/iconfont.eot#iefix) format('embedded-opentype'), 
-  url(/dist/./fonts/iconfont.woff) format('woff'), 
-  url(/dist/./fonts/iconfont.ttf) format('truetype'), 
-  url(/dist/./fonts/iconfont.svg#iconfont) format('svg'); /* iOS 4.1- */
+  src: url(/weixin/assets/./fonts/iconfont.eot); /* IE9*/
+  src: url(/weixin/assets/./fonts/iconfont.eot#iefix) format('embedded-opentype'), 
+  url(/weixin/assets/./fonts/iconfont.woff) format('woff'), 
+  url(/weixin/assets/./fonts/iconfont.ttf) format('truetype'), 
+  url(/weixin/assets/./fonts/iconfont.svg#iconfont) format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
