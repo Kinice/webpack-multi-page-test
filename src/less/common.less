@@ -36,6 +36,9 @@
     border-radius: .08rem;
     border: none;
     font-size: .28rem;
+    &:visited,&:hover,&:active{
+        color: #fff;
+    }
 }
 .btn-disabled{
     background-color: #ccc;
@@ -227,16 +230,20 @@
         border-top: .02rem solid #dfdfdf;
         &>div{
             color: #666;
+            font-size: .27rem;
+            display: inline-block;
         }
         .course{
-            width: 25%;
+            width: 1.75rem;
+            margin-right: .6rem;
             color: #333;
         }
         .count{
-            width: 22%;
+            width: 1.5rem;
+            margin-right: .3rem;
         }
         .time{
-            max-width: 43%;
+            max-width: 2.2rem;
         }
     }
     .l-list{
@@ -263,9 +270,14 @@
         }
         .class-info{
             font-size: .26rem;
-            justify-content: flex-start;
-            .l-info:first-child{
-                width: 67%;
+            .l-info{
+                display: inline-block;
+                &:first-child{
+                    width: 4.4rem;
+                }
+                &:last-child{
+                    min-width: 1.4rem;
+                }
             }
         }
     }
