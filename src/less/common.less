@@ -1,4 +1,13 @@
 //common
+.clearfix{
+    *zoom: 1;
+    &:after{
+        content: '';
+        display: table;
+        line-height: 0;
+        clear: both;
+    }
+}
 .point{
     color: #fe573d;
 }
@@ -9,10 +18,10 @@
     color: #fbab29;
 }
 .img-con{
-    flex-wrap: wrap;
-    justify-content: flex-start !important;
     padding: .2rem .1rem;
+    .clearfix;
     .img-item{
+        float: left;
         width: 28%;
         margin-right: 5%;
         margin-bottom: .26rem;
@@ -69,21 +78,6 @@
 .big{
     margin-top: 0.4rem;
     font-size: .36rem;
-}
-//flex
-.flex{
-    display: -webkit-flex !important;
-    display: flex !important;
-    justify-content: space-between;
-    .vcode{
-        width: 3.6rem;
-    }
-    .vcode-btn{
-        width: 2.4rem;
-    }
-}
-.flex-around{
-    justify-content: space-around;
 }
 .m-info{
     font-size: .24rem;
@@ -184,16 +178,32 @@ h2>.m-info{
         font-weight: 500;
         padding: .3rem 0;
     }
+    .btn-con{
+        text-align: center;
+        .btn{
+            width: 1.6rem;
+            font-size: .36rem;
+            display: inline-block;
+            margin-right: .65rem;
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+    }
     .p-list{
+        .f-fl{
+            float: left;
+            margin-right: .27rem;
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+        .clearfix;
         padding: .2rem 0;
         font-size: .28rem;
         .p-list-sub{
             padding-left: .48rem;
             padding-top: .1rem;
-        }
-        .btn{
-            width: 1.6rem;
-            font-size: .36rem;
         }
         ul{
             padding-left: .46rem;
@@ -203,7 +213,7 @@ h2>.m-info{
                 list-style: disc;
                 span{
                     font-size: .28rem;
-                    color: #000;
+                    color: #444;
                 }
             }
         }
@@ -216,10 +226,10 @@ h2>.m-info{
         .teacher-intro{
             width: 4.7rem;
             .intro-con{
-                padding: .05rem 0;
+                padding: .08rem 0;
                 &>div{
                     display: inline-block;
-                    margin-right: .2rem;
+                    margin-right: .1rem;
                 }
                 .tea-name{
                     font-size: .3rem;
@@ -236,6 +246,7 @@ h2>.m-info{
                     border-radius: .04rem;
                     font-size: .26rem;
                     color: #fff;
+                    margin-bottom: .05rem;
                 }
             }
         }
@@ -270,7 +281,7 @@ h2>.m-info{
             padding: .05rem 0;
             color: #666;
         }
-        &:after{
+        &:before{
             content: '';
             display: block;
             position: absolute;
@@ -283,6 +294,11 @@ h2>.m-info{
             border-color: #a0a0a0 #a0a0a0 transparent transparent;
             transform: rotate(45deg) translateX(-50%);
         }
+        .small{
+            height: .7rem;
+            line-height: .7rem;
+        }
+        .clearfix;
         .class-name{
             font-size: .28rem;
         }
@@ -308,12 +324,14 @@ h2>.m-info{
         .class-name{
             font-size: .30rem;
             font-weight: 500;
+            float: left;
         }
         .btn{
             width: 1.9rem;
             border-radius: 0;
         }
         .func{
+            float: right;
             font-size: .28rem;
             i{
                 font-size: .28rem;

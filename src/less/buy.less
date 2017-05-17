@@ -1,3 +1,12 @@
+.clearfix{
+    *zoom: 1;
+    &:after{
+        content: '';
+        display: table;
+        line-height: 0;
+        clear: both;
+    }
+}
 .colorMixin(@color){
     .half{
         border-color: @color @color #ddd #ddd;
@@ -16,6 +25,7 @@
         font-size: .42rem;
     }
     .m-buylist{
+        .clearfix;
         align-items: center;
         border-radius: .05rem;
         padding: .1rem .3rem;
@@ -33,8 +43,8 @@
             }
         }
         .price{
-            vertical-align: middle;
-            line-height: .36rem;
+            height: 1.2rem;
+            line-height: 1.2rem;
             font-size: .28rem;
             .point{
                 font-size: .36rem;
@@ -44,6 +54,14 @@
             height: .7rem;
             line-height: .7rem;
             width: 1.5rem;
+            margin-top: .24rem;
+        }
+        &>div,&>a{
+            float: left;
+            margin-right: .40rem;
+            &:last-child{
+                margin-right: 0;
+            }
         }
     }
     .primary{

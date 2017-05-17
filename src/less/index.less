@@ -1,8 +1,43 @@
+@musicBase: 0.1rem;
+.f-inline{
+    vertical-align: top;
+    &>div{
+        display: inline-block;
+        vertical-align: top;
+    }
+    .vcode{
+        width: 4rem;
+        margin-right: .2rem;
+    }
+    .vcode-btn{
+        width: 2rem;
+    }
+}
 .explain{
     padding-top: .1rem;
 }
 .m-sec{
     margin: 0 0 .4rem;
+    .sec-intro{
+        position: relative;
+        font-size: .25rem;
+        text-align: center;
+        padding: .26rem .15rem;
+        border: .05rem dotted #ff3366;
+        border-radius: .12rem;
+        margin: .5rem 0;
+        &:after{
+            content: '';
+            position: absolute;
+            left: -2*@musicBase;
+            top: .8*@musicBase;
+            background-image: url(../img/music.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 8*@musicBase;
+            width: 3*@musicBase;
+        }
+    }
     .sec-title{
         background-image: url(../img/title.jpg);
         background-size: cover;
@@ -26,11 +61,12 @@
         width: 25%;
         padding-top: .1rem;
         line-height: 1;
+        margin-right: 2.5%;
     }
     .content-right{
-        width: 72%;
+        width: 70%;
         h3{
-            font-size: .32rem;
+            font-size: .35rem;
             font-weight: normal;
             margin-bottom: .12rem;
             color: #fe573d;
@@ -89,9 +125,13 @@
 .expert-row{
     margin: .2rem 0;
     .expert-content{
-        width: 32%;
+        width: 30%;
         text-align: center;
         line-height: 1;
+        margin-right: 2.5%;
+        &:last-child{
+            margin-right: 0;
+        }
         h4{
             font-size: .26rem;
             font-weight: normal;
@@ -134,21 +174,24 @@
     }
 }
 .getNow{
-    display: flex;
     position: fixed;
     bottom: -1.4rem;
     left: 0;
     width: 100%;
     height: 1.3rem;
+    line-height: 1.3rem;
     box-shadow: 0 .08rem .28rem #fe573d;
     background: #fff;
     align-items: center;
-    justify-content: space-around;
     transition: bottom .15s ease-out;
+    padding: 0 .8rem;
     p{
         font-size: .28rem;
+        display: inline-block;
+        margin-right: 1.4rem;
     }
     button{
+        display: inline-block;
         width: 2.1rem;
         height: .7rem;
         line-height: .7rem;

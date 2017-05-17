@@ -1,6 +1,14 @@
+.clearfix{
+    *zoom: 1;
+    &:after{
+        content: '';
+        display: table;
+        line-height: 0;
+        clear: both;
+    }
+}
 .timepick-radio{
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    .clearfix;
     padding-left: 5%;
     &>div{
         margin-bottom: .3rem;
@@ -56,11 +64,13 @@
         }
     }
     .line-three{
-        flex: 0 0 30%;
+        width: 30%;
+        float: left;
         margin-right: 3%;
     }
     .line-four{
-        flex: 0 0 21%;
+        width: 22%;
+        float: left;
         margin-right: 3%;
     }
     input[type="checkbox"],input[type="radio"]{
