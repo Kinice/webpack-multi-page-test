@@ -631,19 +631,15 @@ h2 > .m-info {
   font-size: .36rem;
 }
 .m-buysec .m-buylist .small {
+  float: right;
   height: .7rem;
   line-height: .7rem;
   width: 1.5rem;
   margin-top: .24rem;
 }
-.m-buysec .m-buylist > div,
-.m-buysec .m-buylist > a {
+.m-buysec .m-buylist > div {
   float: left;
   margin-right: .40rem;
-}
-.m-buysec .m-buylist > div:last-child,
-.m-buysec .m-buylist > a:last-child {
-  margin-right: 0;
 }
 .m-buysec .primary {
   border-left: .08rem solid #8b46fe;
@@ -3477,11 +3473,11 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 @font-face {font-family: "iconfont";
-  src: url(/weixin/assets/./fonts/iconfont.eot); /* IE9*/
-  src: url(/weixin/assets/./fonts/iconfont.eot#iefix) format('embedded-opentype'), 
-  url(/weixin/assets/./fonts/iconfont.woff) format('woff'), 
-  url(/weixin/assets/./fonts/iconfont.ttf) format('truetype'), 
-  url(/weixin/assets/./fonts/iconfont.svg#iconfont) format('svg'); /* iOS 4.1- */
+  src: url(/dist/./fonts/iconfont.eot); /* IE9*/
+  src: url(/dist/./fonts/iconfont.eot#iefix) format('embedded-opentype'), 
+  url(/dist/./fonts/iconfont.woff) format('woff'), 
+  url(/dist/./fonts/iconfont.ttf) format('truetype'), 
+  url(/dist/./fonts/iconfont.svg#iconfont) format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
