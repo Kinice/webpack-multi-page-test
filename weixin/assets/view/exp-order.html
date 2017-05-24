@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>预约体验课</title>
+    <link rel="shortcut icon" href="/weixin/assets/favicon.ico"><link href="/weixin/assets/css/vendors.css?ea8577800d668c2f9f35" rel="stylesheet"></head>
+    <body>
+        <script>
+            document.documentElement.style.fontSize = window.innerWidth / 7.5 + 'px';
+        </script>
+        <input type="hidden" id="appid" value="12345">
+        <input type="hidden" id="timestamp" value="12345">
+        <input type="hidden" id="nonceStr" value="12345">
+        <input type="hidden" id="signature" value="12345">
+        <div class="g-hd">
+            <h1>您<span class="point">正在预约</span>The ONE在线钢琴陪练体验课</h1>
+            <p>课程时间：30分钟</p>
+        </div>
+        <div class="g-bd">
+            <div class="m-sec">
+                <h2 class="title">选择上课日期：</h2>
+                <div class="timepick-radio" id="date"></div>
+            </div>
+            <div class="m-sec">
+                <h2 class="title">选择开始时间：</h2>
+                <div class="timepick-radio" id="time">
+                    <div class="line-four">
+                        <input type="radio" name="time" value="08:30" id="8:30"><label class="default" for="8:30">8:30</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="09:00" id="9:00"><label class="default" for="9:00">9:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="09:30" id="9:30"><label class="default" for="9:30">9:30</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="10:00" id="10:00"><label class="default" for="10:00">10:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="10:30" id="10:30"><label class="default" for="10:30">10:30</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="11:00" id="11:00"><label class="default" for="11:00">11:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="11:30" id="11:30"><label class="default" for="11:30">10:30</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="12:00" id="12:00"><label class="default" for="12:00">12:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="12:30" id="12:30"><label class="default" for="12:30">12:30</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="13:00" id="13:00"><label class="default" for="13:00">13:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="13:30" id="13:30"><label class="default" for="13:30">13:30</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="14:00" id="14:00"><label class="default" for="14:00">14:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="14:30" id="14:30"><label class="default" for="14:30">14:30</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="15:00" id="15:00"><label class="default" for="15:00">15:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="15:30" id="15:30"><label class="default" for="15:30">10:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="16:00" id="16:00"><label class="default" for="16:00">16:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="16:30" id="16:30"><label class="default" for="16:30">16:30</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="17:00" id="17:00"><label class="default" for="17:00">17:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="17:30" id="17:30"><label class="default" for="17:30">17:30</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="18:00" id="18:00"><label class="default" for="18:00">18:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="18:30" id="18:30"><label class="default" for="18:30">18:30</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="19:00" id="19:00"><label class="default" for="19:00">19:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="19:30" id="19:30"><label class="default" for="19:30">19:30</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="20:00" id="20:00"><label class="default" for="20:00">20:00</label>
+                    </div>
+                    <div class="line-four">
+                        <input type="radio" name="time" value="20:30" id="20:30"><label class="default" for="20:30">20:30</label>
+                    </div>
+                </div>
+            </div>
+            <div class="m-sec">
+                <h2 class="title">陪练曲谱：</h2>
+                <p class="m-info">拍照上传陪练曲谱，如果曲谱不在手边，可以稍后上传</p>
+                <div class="weui-uploader__bd"> 
+                    <div class="img-con">
+                        <img class="img-item" src="/weixin/assets/./img/17a2b340b994afeb6f1fa9750fa5382a.jpg">
+                        <img class="img-item" src="/weixin/assets/./img/17a2b340b994afeb6f1fa9750fa5382a.jpg">
+                        <img class="img-item" src="/weixin/assets/./img/17a2b340b994afeb6f1fa9750fa5382a.jpg">
+                        <img class="img-item" src="/weixin/assets/./img/17a2b340b994afeb6f1fa9750fa5382a.jpg">
+                        <img class="img-item" src="/weixin/assets/./img/17a2b340b994afeb6f1fa9750fa5382a.jpg">
+                        <img class="img-item" src="/weixin/assets/./img/17a2b340b994afeb6f1fa9750fa5382a.jpg">
+                        <img class="img-item" src="/weixin/assets/./img/17a2b340b994afeb6f1fa9750fa5382a.jpg">
+                        <div class="weui-uploader__input-box img-item" id="uploaderBox">
+                            <div id="uploaderCustomInput" class="weui-uploader__input" type="text" accept="image/*" multiple=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="m-sec">
+                <h2 class="title">备注（选填）</h2>
+                <input type="text" name="description" id="description" placeholder="可备注您的需求（如纠错、强弱处理等）">
+            </div>
+            <div class="m-sec">
+                <button class="btn" id="confirm">预约</button>
+            </div>
+        </div> 
+    <script type="text/javascript" src="/weixin/assets/js/vendors.js?ea8577800d668c2f9f35"></script><script type="text/javascript" src="/weixin/assets/js/exp-order.js?ea8577800d668c2f9f35"></script></body>
+</html>

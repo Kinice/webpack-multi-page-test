@@ -227,6 +227,27 @@ textarea::-webkit-input-placeholder {
   background-color: #f4f4f7;
   padding-bottom: 1px;
 }
+.img-prev-con {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #000;
+  z-index: 999;
+}
+.img-prev-con .img-prev {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 60px;
+  right: 0;
+  background: center center no-repeat;
+  background-size: contain;
+  z-index: 1000;
+}
 .btn {
   display: block;
   width: 100%;
@@ -364,7 +385,7 @@ h2 > .m-info {
 .m-card .title {
   font-size: .3rem;
   font-weight: 500;
-  padding: .3rem 0;
+  padding: .3rem 0 .1rem;
 }
 .m-card .btn-con {
   text-align: center;
@@ -488,6 +509,7 @@ h2 > .m-info {
   border-style: solid;
   border-width: .03rem;
   border-color: #a0a0a0 #a0a0a0 transparent transparent;
+  -webkit-transform: rotate(45deg) translateX(-50%);
   transform: rotate(45deg) translateX(-50%);
 }
 .m-card .l-list .small {
@@ -617,9 +639,11 @@ h2 > .m-info {
   text-align: center;
   line-height: 1.18rem;
   font-size: .32rem;
+  -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 .m-buysec .m-buylist .times p {
+  -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
 .m-buysec .m-buylist .price {
@@ -3210,6 +3234,7 @@ input[type="search"]::-webkit-search-results-decoration {
   border-width: .32rem;
   border-color: transparent transparent transparent #fe573d;
   border-style: solid;
+  -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 .timepick-radio > div .disabled {
@@ -3473,11 +3498,11 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 @font-face {font-family: "iconfont";
-  src: url(/dist/./fonts/iconfont.eot); /* IE9*/
-  src: url(/dist/./fonts/iconfont.eot#iefix) format('embedded-opentype'), 
-  url(/dist/./fonts/iconfont.woff) format('woff'), 
-  url(/dist/./fonts/iconfont.ttf) format('truetype'), 
-  url(/dist/./fonts/iconfont.svg#iconfont) format('svg'); /* iOS 4.1- */
+  src: url(/weixin/assets/./fonts/iconfont.eot); /* IE9*/
+  src: url(/weixin/assets/./fonts/iconfont.eot#iefix) format('embedded-opentype'), 
+  url(/weixin/assets/./fonts/iconfont.woff) format('woff'), 
+  url(/weixin/assets/./fonts/iconfont.ttf) format('truetype'), 
+  url(/weixin/assets/./fonts/iconfont.svg#iconfont) format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
