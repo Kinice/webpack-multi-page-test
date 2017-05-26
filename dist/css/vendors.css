@@ -236,6 +236,7 @@ textarea::-webkit-input-placeholder {
   right: 0;
   background-color: #000;
   z-index: 999;
+  cursor: pointer;
 }
 .img-prev-con .img-prev {
   display: block;
