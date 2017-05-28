@@ -21,16 +21,33 @@
     padding: .2rem .1rem;
     .clearfix;
     .img-item{
+        position: relative;
         float: left;
         width: 28%;
         margin-right: 5%;
         margin-bottom: .26rem;
+        .up-delete{
+            font-family: tahoma,arial,'Microsoft Yahei',sans-serif;
+            font-size: .28rem;
+            display: block;
+            text-align: center;
+            height: .40rem;
+            width: .40rem;
+            line-height: .40rem;
+            background-color: #000;
+            color: #fff;
+            position: absolute;
+            right: -.20rem;
+            top: -.20rem;
+            border-radius: 50%;
+        }
     }
     .weui-uploader__input-box{
         height: 1.65rem;
     }
     img{
         width: 100%;
+        display: block;
     }
 }
 .grey-bd{
@@ -385,19 +402,6 @@ h2>.m-info{
 }
 .lb-warn{
     background-color: #fd853e;
-}
-//
-.up-delete{
-    display: inline-block;
-    position: relative;
-    &:before{
-        content: '\E621';
-        display: block !important;
-        position: absolute !important;
-        right: -.2rem !important;
-        top: -.34rem !important;
-        font-size: .44rem !important;
-    }
 }
 //weui
 .weui-msg{

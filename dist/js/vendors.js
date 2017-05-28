@@ -86,7 +86,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "76a9d683bc14f284a06e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "8db45f7c9265d42ab16e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotMainModule = true; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -11559,8 +11559,9 @@ C||h.on("mousedown",function(e){t(e.pageY),e.stopPropagation(),e.preventDefault(
 ;(function () {
     var html = '<div class="img-prev-con"><span class="img-prev"></span></div>';
 
-    $('.img-con').on('click', '.img-item', function () {
-        var thisImgSrc = $(this).children('img')[0].src;
+    $('.img-con').on('click', '.img-item img', function (e) {
+        console.log(e);
+        var thisImgSrc = this.src;
 
         if ($('.img-prev-con').length <= 0) {
             $('body').append(html);
