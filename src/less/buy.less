@@ -93,8 +93,10 @@
     }
 }
 .buy-confirm{
+    padding-top: .3rem;
     .title{
-        font-size: .48rem;
+        font-size: .42rem;
+        font-weight: 500;
     }
     .buy-main{
         .clearfix;
@@ -117,6 +119,7 @@
             }
         }
         .buy-info{
+            padding-top: .1rem;
             float: left;
             .buy-title{
                 font-size: .34rem;
@@ -125,7 +128,7 @@
             .price{
                 padding-left: .1rem;
                 margin-bottom: .2rem;
-                p{
+                div,p{
                     display: inline-block;
                     vertical-align: middle;
                 }
@@ -135,21 +138,50 @@
                 }
                 .discount{
                     font-size: .3rem;
-                    color: #999;
+                    color: red;
+                    text-decoration: line-through;
+                    .dis-price{
+                        color: #999;
+                    }
+                }
+                .dis-tag{
+                    position: relative;
+                    font-size: .24rem;
+                    color: #fff;
+                    background-color: red;
+                    padding: 0 .12rem;
+                    font-weight: 500;
+                    border-radius: .06rem;
+                    margin-left: .19rem;
                     &:after{
-                        display: list-item;
-                        content: '限时优惠';
-                        background-color: red;
-                        color: #fff;
-                        font-size: .2rem;
-                        padding: 0 5px;
-                        font-weight: bold;
-                        list-style: disc;
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        left: -.34rem;
+                        border-style: solid;
+                        border-width: .19rem;
+                        border-color: transparent red transparent transparent;
+                    }
+                    &:before{
+                        content: '';
+                        width: .07rem;
+                        height: .07rem;
+                        display: block;
+                        position: absolute;
+                        left: -.05rem;
+                        top: .16rem;
+                        background-color: #fff;
+                        border-radius: 50%;
+                        z-index: 999;
                     }
                 }
             }
             .info{
                 color: #666;
+                font-size: .28rem;
             }
         }
     }
