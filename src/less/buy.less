@@ -7,22 +7,90 @@
         clear: both;
     }
 }
-.colorMixin(@color){
-    .half{
-        border-color: @color @color #ddd #ddd;
+.icon1{
+    background-image: url(../img/buy1.png)
+}
+.icon2{
+    background-image: url(../img/buy2.png)
+}
+.icon3{
+    background-image: url(../img/buy3.png)
+}
+.icon4{
+    background-image: url(../img/buy4.png)
+}
+.icon5{
+    background-image: url(../img/buy5.png)
+}
+.icon6{
+    background-image: url(../img/buy6.png)
+}
+.icon7{
+    background-image: url(../img/buy7.png)
+}
+.discount-con{
+    padding-left: .1rem;
+    margin-bottom: .2rem;
+    display: inline-block;
+    div,p{
+        display: inline-block;
+        vertical-align: middle;
     }
-    .quarter{
-        border-color: @color #ddd #ddd #ddd;
+    .point{
+        font-size: .34rem;
+        margin-right: .05rem;
     }
-    .three-fourths{
-        border-color: @color @color @color #ddd;
+    .discount{
+        font-size: .3rem;
+        color: red;
+        text-decoration: line-through;
+        .dis-price{
+            color: #999;
+        }
+    }
+    .dis-tag{
+        position: relative;
+        font-size: .24rem;
+        color: #fff;
+        background-color: red;
+        padding: 0 .05rem;
+        font-weight: 500;
+        border-radius: .06rem;
+        margin-left: .19rem;
+        &:after{
+            content: '';
+            width: 0;
+            height: 0;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -.34rem;
+            border-style: solid;
+            border-width: .19rem;
+            border-color: transparent red transparent transparent;
+        }
+        &:before{
+            content: '';
+            width: .07rem;
+            height: .07rem;
+            display: block;
+            position: absolute;
+            left: -.05rem;
+            top: .16rem;
+            background-color: #fff;
+            border-radius: 50%;
+            z-index: 999;
+        }
     }
 }
 .m-buysec{
     padding-top: .3rem;
     .title{
         margin-bottom:.08rem;
-        font-size: .42rem;
+        font-size: .38rem;
+        .m-info{
+            font-size: .27rem;
+        }
     }
     .m-buylist{
         .clearfix;
@@ -30,24 +98,28 @@
         border-radius: .05rem;
         padding: .1rem .3rem;
         margin-bottom: .1rem;
+        border-bottom: 1px solid #ddd;
         .times{
-            height: 1.2rem;
-            width: 1.2rem;
-            border-radius: 50%;
+            height: 1rem;
+            width: 1rem;
             text-align: center;
             line-height: 1.18rem;
             font-size: .32rem;
-            -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-            p{
-                -webkit-transform: rotate(-45deg);
-                transform: rotate(-45deg)
-            }
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
         .price{
-            height: 1.2rem;
-            line-height: 1.2rem;
+            .point{
+                display: inline-block;
+            }
             font-size: .28rem;
+            .p-title{
+                font-size: .32rem;
+            }
+            .p-info{
+                color: #666;
+            }
             .point{
                 font-size: .36rem;
             }
@@ -57,39 +129,15 @@
             height: .7rem;
             line-height: .7rem;
             width: 1.5rem;
-            margin-top: .24rem;
+            margin-top: .12rem;
         }
         &>div{
             float: left;
-            margin-right: .40rem;
+            margin-right: .20rem;
         }
-    }
-    .primary{
-        border-left: .08rem solid #8b46fe;
-        box-shadow: 0 0 .04rem #8b46fe;
-        .times{
-            border: .04rem solid #8b46fe;
-            color: #8b46fe;
+        &:last-child{
+            border-bottom: none;
         }
-        .colorMixin(#8b46fe);
-    }
-    .mediate{
-        border-left: .08rem solid #d65bff;
-        box-shadow: 0 0 .04rem #d65bff;
-        .times{
-            border: .04rem solid #d65bff;
-            color: #d65bff;
-        }
-        .colorMixin(#d65bff);
-    }
-    .advance{
-        border-left: .08rem solid #fd86bd;
-        box-shadow: 0 0 .04rem #fd86bd;
-        .times{
-            border: .04rem solid #fd86bd;
-            color: #fd86bd;
-        }
-        .colorMixin(#fd86bd);
     }
 }
 .buy-confirm{
@@ -102,6 +150,11 @@
         .clearfix;
         padding: 0 .25rem;
         margin-top: .5rem;
+        .price{
+            .point{
+                display: inline-block;
+            }
+        }
         .buy-icon{
             float: left;
             width: 1.1rem;
@@ -114,9 +167,6 @@
                 background-repeat: no-repeat;
                 background-size: contain;
             }
-            .icon1{
-                background-image: url(../img/buy1.png)
-            }
         }
         .buy-info{
             padding-top: .1rem;
@@ -124,60 +174,6 @@
             .buy-title{
                 font-size: .34rem;
                 font-weight: bold;
-            }
-            .price{
-                padding-left: .1rem;
-                margin-bottom: .2rem;
-                div,p{
-                    display: inline-block;
-                    vertical-align: middle;
-                }
-                .point{
-                    font-size: .34rem;
-                    margin-right: .05rem;
-                }
-                .discount{
-                    font-size: .3rem;
-                    color: red;
-                    text-decoration: line-through;
-                    .dis-price{
-                        color: #999;
-                    }
-                }
-                .dis-tag{
-                    position: relative;
-                    font-size: .24rem;
-                    color: #fff;
-                    background-color: red;
-                    padding: 0 .12rem;
-                    font-weight: 500;
-                    border-radius: .06rem;
-                    margin-left: .19rem;
-                    &:after{
-                        content: '';
-                        width: 0;
-                        height: 0;
-                        display: block;
-                        position: absolute;
-                        top: 0;
-                        left: -.34rem;
-                        border-style: solid;
-                        border-width: .19rem;
-                        border-color: transparent red transparent transparent;
-                    }
-                    &:before{
-                        content: '';
-                        width: .07rem;
-                        height: .07rem;
-                        display: block;
-                        position: absolute;
-                        left: -.05rem;
-                        top: .16rem;
-                        background-color: #fff;
-                        border-radius: 50%;
-                        z-index: 999;
-                    }
-                }
             }
             .info{
                 color: #666;
