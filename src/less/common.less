@@ -8,6 +8,9 @@
         clear: both;
     }
 }
+.hide{
+    display: none !important; 
+}
 .point{
     color: #fe573d;
 }
@@ -34,8 +37,10 @@
     .img-item{
         position: relative;
         float: left;
-        width: 28%;
-        margin-right: 5%;
+        width: 1.65rem;
+        height: 1.65rem;
+        overflow: hidden;
+        margin-right: .3rem;
         margin-bottom: .26rem;
         .up-delete{
             font-family: tahoma,arial,'Microsoft Yahei',sans-serif;
@@ -118,6 +123,17 @@
 }
 .btn-con{
     padding: .3rem .5rem;
+}
+.view-icon{
+    display: inline-block;
+    width: 90px;
+    height: 90px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.icon-ok{
+    background-image: url(../img/oicon2.png);
 }
 .btn-con-fixed{
     position: fixed;
