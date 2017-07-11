@@ -1,6 +1,3 @@
-require('../less/reset.less')
-require('../less/common.less')
-require('weui')
 let imgs = require('../libs/uploader.js')
 let checked = require('../libs/radio.js')
 

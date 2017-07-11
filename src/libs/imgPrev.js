@@ -2,7 +2,6 @@
     var html = '<div class="img-prev-con"><span class="img-prev"></span></div>'
 
     $('.img-con').on('click','.img-item img',function(e){
-        console.log(e)
         var thisImgSrc = this.src
 
         if($('.img-prev-con').length <= 0){
