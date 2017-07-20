@@ -245,8 +245,8 @@ textarea::-webkit-input-placeholder {
   background-color: #000;
   color: #fff;
   position: absolute;
-  right: -0.2rem;
-  top: -0.2rem;
+  right: 0;
+  top: 0;
   z-index: 20;
   border-radius: 50%;
 }
@@ -262,7 +262,7 @@ textarea::-webkit-input-placeholder {
   padding-bottom: 1px;
 }
 .grey-bd .g-buy-banner {
-  background-image: url(/dist/./img/e6f7eefc3a4a3d277c5fbd18530e6b26.jpg);
+  background-image: url(/weixin/assets/./img/e6f7eefc3a4a3d277c5fbd18530e6b26.jpg);
   background-repeat: no-repeat;
   background-size: contain;
   height: 1.11rem;
