@@ -71,7 +71,7 @@ let config = {
     devServer: {
         contentBase: './dist/view/',
         host: 'localhost',
-        port: '9090',
+        port: '9081',
         inline: true,
         hot: true
     }
